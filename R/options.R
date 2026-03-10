@@ -46,29 +46,29 @@
 #'         If all parameters are provided, updates the option and returns the updated option category list invisibly.
 #' @examples
 #' # Get all options across all categories
-#' tabhelpers_options()
+#' tabstats_options()
 #'
 #' # Get all options in the "tab_default" category
-#' tabhelpers_options("tab_default")
+#' tabstats_options("tab_default")
 #'
 #' # Get all options in the "tab_digits" category
-#' tabhelpers_options("tab_digits")
+#' tabstats_options("tab_digits")
 #'
 #' # Get a specific option
-#' tabhelpers_options("tab_default", "vb_top")
-#' tabhelpers_options("tab_digits", "ex")
+#' tabstats_options("tab_default", "vb_top")
+#' tabstats_options("tab_digits", "ex")
 #'
 #' # Using backward compatibility (system will find the right category)
-#' tabhelpers_options("vb_top")
-#' tabhelpers_options("ex")
+#' tabstats_options("vb_top")
+#' tabstats_options("ex")
 #'
 #' # Modify an option
-#' tabhelpers_options("tab_default", "border_char", "+")
-#' tabhelpers_options("tab_digits", "ex", 2)
+#' tabstats_options("tab_default", "border_char", "+")
+#' tabstats_options("tab_digits", "ex", 2)
 #'
 #' # Using backward compatibility for modification
-#' tabhelpers_options("border_char", "+")
-#' tabhelpers_options("ex", 2)
+#' tabstats_options("border_char", "+")
+#' tabstats_options("ex", 2)
 #'
 #' @export
 tabstats_options = function(category = NULL, option = NULL, value = NULL) {
