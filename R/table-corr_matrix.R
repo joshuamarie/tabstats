@@ -6,10 +6,12 @@
 #'   from a `method` attribute on the spec if present.
 #' @param diag_1 If `TRUE`, diagonal cells always show `"1"`. Default `TRUE`.
 #' @param digits Decimal places for numeric formatting. Default `3`.
+#' @param layout_view Show a layout legend box above the table? Default `FALSE`.
+#' @param layout_center Center the layout box in the terminal? Default `FALSE`.
 #' @param center_table Center table in terminal? Default `FALSE`.
 #' @param border_char Border character. Default from `getOption("tab_default")`.
-#' @param style Named list of style specs. Keys: `corr` and any extra field
-#'   names passed to `new_corr_spec()` (e.g. `pval`, `bf`), plus `title` and
+#' @param style Named list of style specs. Keys match the extra field names
+#'   passed to `new_corr_spec()` (e.g. `rho`, `pval`, `bf`), plus `title` and
 #'   `border_text`. Each value can be a cli-style string or a `function(x)`.
 #' @param ... Reserved for future use.
 #'
@@ -26,7 +28,7 @@
 #'     rho  = c("0.89", "0.79", "0.66"),
 #'     pval = c("<0.001", "<0.001", "<0.001")
 #' )
-#' corr_matrix(spec, method = "Pearson")
+#' corr_matrix(spec, method = "Pearson", layout_view = TRUE)
 #'
 #' @export
 corr_matrix = function(
@@ -34,6 +36,8 @@ corr_matrix = function(
         method = NULL,
         diag_1 = TRUE,
         digits = 3,
+        layout_view = FALSE,
+        layout_center = FALSE,
         center_table = FALSE,
         border_char = getOption("tab_default")$border_char,
         style = list(),
@@ -60,12 +64,17 @@ corr_matrix = function(
 
     style = style_resolver_cm(style, names(spec$extras))
 
-    # ---- Build render matrix -------------------------------------------------
-    vars = spec$vars
-    n = length(vars)
     field_names = names(spec$extras)
     if (length(field_names) == 0) field_names = "corr"
     n_fields = length(field_names)
+
+    # ---- Layout view ---------------------------------------------------------
+    if (layout_view)
+        print_layout_cm(field_names, style, border_char, layout_center, center_table)
+
+    # ---- Build render matrix -------------------------------------------------
+    vars = spec$vars
+    n = length(vars)
 
     mat = matrix("", nrow = n * n_fields, ncol = n + 1L)
 
@@ -99,9 +108,7 @@ corr_matrix = function(
         }
 
         row_base = (ri - 1L) * n_fields + 1L
-
-        corr_val = spec$extras[[1L]][p]
-        mat[row_base, ci + 1L] = corr_val
+        mat[row_base, ci + 1L] = spec$extras[[1L]][p]
 
         for (k in seq_along(spec$extras)[-1L])
             mat[row_base + k - 1L, ci + 1L] = spec$extras[[k]][p]
@@ -212,4 +219,46 @@ left_pad_cm = function(center_table, total_width) {
     if (!center_table) return("")
     term_w = tryCatch(cli::console_width(), error = function(e) as.integer(getOption("width")))
     strrep(" ", max(0L, floor((term_w - total_width) / 2L)))
+}
+
+print_layout_cm = function(field_names, style, border_char, layout_center, center_table) {
+    w = 29L
+    top = paste0("\u250C", strrep("\u2500", w - 2L), "\u2510")
+    mid = paste0("\u251C", strrep("\u2500", w - 2L), "\u2524")
+    bot = paste0("\u2514", strrep(border_char, w - 2L), "\u2518")
+    inner = function(txt) paste0("| ", align_center(txt, w - 4L), " |")
+
+    box = c(
+        top,
+        inner(style[["title"]]("Layout for Corr. Matrix")),
+        mid
+    )
+    for (nm in field_names) {
+        label = paste0("< ", nm, " >")
+        styled_label = tryCatch(style[[nm]](label), error = function(e) NULL)
+        if (is.null(styled_label)) {
+            probe = tryCatch(style[[nm]]("1"), error = function(e) NULL)
+            styled_label = if (!is.null(probe)) {
+                # Extract all leading escapes and all trailing escapes from probe
+                pre  = regmatches(probe, regexpr("^(\033\\[[0-9;]*m)+", probe))
+                post = regmatches(probe, regexpr("(\033\\[[0-9;]*m)+$", probe))
+                if (length(pre) && length(post)) paste0(pre, label, post) else label
+            } else {
+                label
+            }
+        }
+        box = c(box, inner(styled_label))
+    }
+
+    box = c(box, bot)
+
+    term_w = tryCatch(cli::console_width(), error = function(e) as.integer(getOption("width")))
+    pad = if (layout_center || center_table)
+        strrep(" ", max(0L, floor((term_w - w) / 2L)))
+    else
+        ""
+
+    cat("\n")
+    for (line in box) cat(pad, line, "\n", sep = "")
+    cat("\n")
 }
