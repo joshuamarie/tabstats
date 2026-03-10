@@ -2,7 +2,6 @@
 
 export(corr_matrix)
 export(cross_table)
-export(matrix_table)
 export(new_corr_spec)
 export(table_default)
 export(table_summary)
