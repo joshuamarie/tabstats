@@ -9,6 +9,8 @@ corr_matrix(
   method = NULL,
   diag_1 = TRUE,
   digits = 3,
+  layout_view = FALSE,
+  layout_center = FALSE,
   center_table = FALSE,
   border_char = getOption("tab_default")$border_char,
   style = list(),
@@ -26,12 +28,16 @@ from a \code{method} attribute on the spec if present.}
 
 \item{digits}{Decimal places for numeric formatting. Default \code{3}.}
 
+\item{layout_view}{Show a layout legend box above the table? Default \code{FALSE}.}
+
+\item{layout_center}{Center the layout box in the terminal? Default \code{FALSE}.}
+
 \item{center_table}{Center table in terminal? Default \code{FALSE}.}
 
 \item{border_char}{Border character. Default from \code{getOption("tab_default")}.}
 
-\item{style}{Named list of style specs. Keys: \code{corr} and any extra field
-names passed to \code{new_corr_spec()} (e.g. \code{pval}, \code{bf}), plus \code{title} and
+\item{style}{Named list of style specs. Keys match the extra field names
+passed to \code{new_corr_spec()} (e.g. \code{rho}, \code{pval}, \code{bf}), plus \code{title} and
 \code{border_text}. Each value can be a cli-style string or a \verb{function(x)}.}
 
 \item{...}{Reserved for future use.}
@@ -53,6 +59,6 @@ spec = new_corr_spec(
     rho  = c("0.89", "0.79", "0.66"),
     pval = c("<0.001", "<0.001", "<0.001")
 )
-corr_matrix(spec, method = "Pearson")
+corr_matrix(spec, method = "Pearson", layout_view = TRUE)
 
 }

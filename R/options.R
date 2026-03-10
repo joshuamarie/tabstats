@@ -71,7 +71,7 @@
 #' tabhelpers_options("ex", 2)
 #'
 #' @export
-tabhelpers_options = function(category = NULL, option = NULL, value = NULL) {
+tabstats_options = function(category = NULL, option = NULL, value = NULL) {
     # --- Add more categories... ----
     valid_categories = c("tab_default", "tab_digits")
 

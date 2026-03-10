@@ -27,7 +27,8 @@ Imports:
     tibble,
     tidyselect,
     stringr,
-    utils
+    utils,
+    stats
 Suggests:
     broom,
     rstatix,
