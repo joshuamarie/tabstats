@@ -1,9 +1,15 @@
-Package: tabhelpers
+Package: tabstats
 Type: Package
-Title: Helpers for displaying tables in command line
-Version: 0.1.0.3
-Author: Joshua Marie Ongcoy
-Maintainer: Joshua Marie Ongcoy <joshuaongcoy26@gmail.com>
+Title: Helpers for displaying tables
+Version: 0.1.0
+Authors@R: c(
+    person(
+      "Joshua", "Marie",
+      email = "joshua.marie.k@gmail.com",
+      role = c("aut", "cre")
+    )
+  )
+Maintainer: Joshua Marie <joshua.marie.k@gmail.com>
 Description: Collection of functions to print the data frames in command line. 
     This package provides helpers to display a statistical results in a data frame,
     contingency table, correlation matrix, and a summary table in 2 columns form.
@@ -11,7 +17,9 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
+Depends: 
+    R (>= 4.1.0)  
 Imports:
     rlang,
     dplyr,
