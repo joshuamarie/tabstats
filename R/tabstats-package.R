@@ -1,3 +1,4 @@
+#' @docType package
+#' @name tabstats
 #' @keywords package
-#' @aliases class-package
 "_PACKAGE"
