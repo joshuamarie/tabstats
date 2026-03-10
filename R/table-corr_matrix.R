@@ -18,9 +18,10 @@
 #' @return Invisibly returns the rendered character matrix.
 #'
 #' @examples
-#' # From a plain matrix
-#' # corr_matrix(cor(mtcars[, 1:4]), method = "Pearson")
+#' # From a plain correlation matrix, e.g. using `cor()`
+#' corr_matrix(cor(mtcars[, 1:4]), method = "Pearson")
 #'
+#' # Customizable example
 #' spec = new_corr_spec(
 #'     var1 = c("a", "a", "b"),
 #'     var2 = c("b", "c", "c"),
@@ -155,14 +156,13 @@ matrix_spec_resolver_cm = function(m, digits) {
     if (!isSymmetric(unname(m)))
         stop("Matrix must be symmetric.", call. = FALSE)
 
-    vars = if (!is.null(colnames(m))) colnames(m) else paste0("Var", seq_len(ncol(m)))
-    pairs = which(lower.tri(m), arr.ind = TRUE)
-    corr_vals = sprintf(paste0("%.", digits, "f"), m[pairs])
+    new_m = as.table(m) |>
+        as.data.frame()
 
     spec = new_corr_spec(
-        var1 = vars[pairs[, 1]],
-        var2 = vars[pairs[, 2]],
-        corr = corr_vals
+        var1 = vctrs::vec_cast(new_m[[1]], character()),
+        var2 = vctrs::vec_cast(new_m[[2]], character()),
+        corr = format(new_m[[3]], digits = digits)
     )
     attr(spec, "method") = "Unknown"
     spec

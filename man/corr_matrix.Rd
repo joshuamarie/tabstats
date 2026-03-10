@@ -49,9 +49,10 @@ Invisibly returns the rendered character matrix.
 Display a Correlation Matrix Table in the Console
 }
 \examples{
-# From a plain matrix
-# corr_matrix(cor(mtcars[, 1:4]), method = "Pearson")
+# From a plain correlation matrix, e.g. using `cor()`
+corr_matrix(cor(mtcars[, 1:4]), method = "Pearson")
 
+# Customizable example
 spec = new_corr_spec(
     var1 = c("a", "a", "b"),
     var2 = c("b", "c", "c"),
