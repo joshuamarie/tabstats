@@ -50,13 +50,12 @@ Display a Correlation Matrix Table in the Console
 }
 \examples{
 # From a plain matrix
-corr_matrix(cor(mtcars[, 1:4]), method = "Pearson")
+# corr_matrix(cor(mtcars[, 1:4]), method = "Pearson")
 
-# From a corr_spec
 spec = new_corr_spec(
     var1 = c("a", "a", "b"),
     var2 = c("b", "c", "c"),
-    rho  = c("0.89", "0.79", "0.66"),
+    rho = c("0.89", "0.79", "0.66"),
     pval = c("<0.001", "<0.001", "<0.001")
 )
 corr_matrix(spec, method = "Pearson", layout_view = TRUE)
