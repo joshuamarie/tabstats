@@ -24,15 +24,15 @@
 #' @return An object of class `corr_spec`.
 #'
 #' @examples
-#' new_corr_spec(
+#' new_corr_data(
 #'     var1 = c("a", "a", "b"),
 #'     var2 = c("b", "c", "c"),
-#'     rho  = c("0.89", "0.79", "0.66"),
+#'     rho = c("0.89", "0.79", "0.66"),
 #'     pval = c("<0.001", "<0.001", "<0.001")
 #' )
 #'
 #' @export
-new_corr_spec = function(var1, var2, ...) {
+new_corr_data = function(var1, var2, ...) {
     stopifnot(is.character(var1), is.character(var2))
 
     n_pairs = length(var1)
@@ -76,7 +76,6 @@ detect_pattern = function(var1, var2, n_pairs) {
         all = n * n
     )
 
-    # Use position in sorted unique vars to determine triangle direction
     sorted_vars = sort(all_vars)
     idx1 = match(var1, sorted_vars)
     idx2 = match(var2, sorted_vars)
@@ -84,7 +83,7 @@ detect_pattern = function(var1, var2, n_pairs) {
     has_gt = any(idx1 > idx2)
     has_eq = any(var1 == var2)
 
-    if      (!has_lt && !has_gt &&  has_eq && n_pairs == expected$all) "full"
+    if (!has_lt && !has_gt &&  has_eq && n_pairs == expected$all) "full"
     else if ( has_lt &&  has_gt &&  has_eq && n_pairs == expected$all) "full"
     else if ( has_lt &&  has_gt && !has_eq && n_pairs == expected$neq) "neq"
     else if ( has_lt && !has_gt && !has_eq && n_pairs == expected$lt)  "lt"

@@ -124,7 +124,7 @@ A much complex function to display the matrix, but specifically for correlation 
 corr_matrix(cor(mtcars[, 1:4]), method = "Pearson")
 ```
 
-But, if the data you wanted to display is not a matrix, but on another form, you gotta have to configure it by building a custom spec with `new_corr_spec()` for full control over which values appear.
+But, if the data you wanted to display is not a matrix, but on another form, you gotta have to configure it by building a custom spec with `new_corr_data()` for full control over which values appear.
 
 A wild example, assuming you want to display the output from `rstatix::cor_test()`: 
 
@@ -151,7 +151,7 @@ cor_mat =
 cor_mat |> 
     with({
         corr_matrix(
-            new_corr_spec(
+            new_corr_data(
                 var1 = var1,
                 var2 = var2,
                 corr = cor,
@@ -191,7 +191,7 @@ All table functions provides an API to style the table.
 
 3.  `cross_table()` has a `style` parameter to configure the style of the data displayed by the function. Use `ct_style()` to configure the style of the displayed values. 
 
-4.  `corr_matrix()` has a `style` parameter to configure the style of the values you entered, typically from the `display` argument using `new_corr_spec()`. Use `cm_style()` to configure those values you assigned into `new_corr_spec()` into the displayed table.
+4.  `corr_matrix()` has a `style` parameter to configure the style of the values you entered, typically from the `display` argument using `new_corr_data()`. Use `cm_style()` to configure those values you assigned into `new_corr_data()` into the displayed table.
 
 The quickest way to style output is with a named string:
 
@@ -235,13 +235,13 @@ Supported named style strings:
 | `"blue_bold"` | Colour + bold (combinable with `_`) |
 | `"red_italic"` | Colour + italic |
 
-More example: Imagine you want to apply for the p-value of the output from `rstatix::cor_test()`, an earlier example. In `corr_matrix()`, you can even conditionally format the specified value from `new_corr_spec()`. 
+More example: Imagine you want to apply for the p-value of the output from `rstatix::cor_test()`, an earlier example. In `corr_matrix()`, you can even conditionally format the specified value from `new_corr_data()`. 
 
 ```{r}
 cor_mat |> 
     with({
         corr_matrix(
-            new_corr_spec(
+            new_corr_data(
                 var1 = var1,
                 var2 = var2,
                 corr = cor,

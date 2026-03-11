@@ -8,7 +8,7 @@ cm_style(...)
 }
 \arguments{
 \item{...}{Named style entries. Names should match the extra field names
-passed to \code{\link[=new_corr_spec]{new_corr_spec()}} (e.g. \code{rho}, \code{pval}, \code{bf}), or the reserved
+passed to \code{\link[=new_corr_data]{new_corr_data()}} (e.g. \code{rho}, \code{pval}, \code{bf}), or the reserved
 keys \code{title} and \code{border_text}.}
 }
 \value{

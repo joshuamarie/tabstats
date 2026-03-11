@@ -1,10 +1,10 @@
-spec_lt = new_corr_spec(
+spec_lt = new_corr_data(
     var1 = c("a", "a", "b"),
     var2 = c("b", "c", "c"),
     rho = c("0.89", "0.79", "0.66")
 )
 
-spec_multi = new_corr_spec(
+spec_multi = new_corr_data(
     var1 = c("a", "a", "b"),
     var2 = c("b", "c", "c"),
     rho = c("0.89", "0.79", "0.66"),
@@ -124,18 +124,18 @@ test_that("combined style string (e.g. blue_bold) returns a function", {
     expect_type(fn, "closure")
 })
 
-# ---- new_corr_spec() -----
+# ---- new_corr_data() -----
 
 test_that("errors when var1 and var2 have different lengths", {
     expect_error(
-        new_corr_spec(var1 = c("a", "b"), var2 = "c", rho = c("0.5", "0.6")),
+        new_corr_data(var1 = c("a", "b"), var2 = "c", rho = c("0.5", "0.6")),
         "same length"
     )
 })
 
 test_that("errors when extra vector has wrong length", {
     expect_error(
-        new_corr_spec(var1 = c("a"), var2 = c("b"), rho = c("0.5", "0.6")),
+        new_corr_data(var1 = c("a"), var2 = c("b"), rho = c("0.5", "0.6")),
         "same length"
     )
 })
@@ -151,7 +151,7 @@ test_that("detect_pattern correctly identifies lower triangle", {
 test_that("detect_pattern correctly identifies full matrix", {
     vars = c("a", "b")
     all_pairs = expand.grid(var1 = vars, var2 = vars, stringsAsFactors = FALSE)
-    spec = new_corr_spec(
+    spec = new_corr_data(
         var1 = all_pairs$var1,
         var2 = all_pairs$var2,
         rho = rep("0.5", nrow(all_pairs))

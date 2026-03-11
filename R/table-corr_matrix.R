@@ -1,6 +1,6 @@
 #' Display a Correlation Matrix Table in the Console
 #'
-#' @param display A `corr_spec` object from `new_corr_spec()`, or a plain
+#' @param display A `corr_spec` object from `new_corr_data()`, or a plain
 #'   symmetric matrix (e.g. from `cor()`).
 #' @param title Label shown in the title (e.g. `"Pearson Correlation Matrix"`).
 #'   Auto-detected from a `title` attribute on the spec if present.
@@ -11,7 +11,7 @@
 #' @param center_table Center table in terminal? Default `FALSE`.
 #' @param border_char Border character. Default from `getOption("tab_default")`.
 #' @param style A `cm_style()` object. Keys match the extra field names passed
-#'   to `new_corr_spec()` (e.g. `rho`, `pval`, `bf`), plus `title` and
+#'   to `new_corr_data()` (e.g. `rho`, `pval`, `bf`), plus `title` and
 #'   `border_text`.
 #' @param ... Reserved for future use.
 #'
@@ -22,7 +22,7 @@
 #' corr_matrix(cor(mtcars[, 1:4]), title = "Pearson Correlation Matrix")
 #'
 #' # Customizable example
-#' spec = new_corr_spec(
+#' spec = new_corr_data(
 #'     var1 = c("a", "a", "b"),
 #'     var2 = c("b", "c", "c"),
 #'     rho = c("0.89", "0.79", "0.66"),
@@ -170,7 +170,7 @@ matrix_spec_resolver_cm = function(m, digits) {
     new_m = as.table(m) |>
         as.data.frame()
 
-    spec = new_corr_spec(
+    spec = new_corr_data(
         var1 = vctrs::vec_cast(new_m[[1]], character()),
         var2 = vctrs::vec_cast(new_m[[2]], character()),
         corr = format(new_m[[3]], digits = digits)

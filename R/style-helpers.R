@@ -127,7 +127,7 @@ ct_style =
 #' Constructs a validated style object for use with [corr_matrix()].
 #'
 #' @param ... Named style entries. Names should match the extra field names
-#'   passed to [new_corr_spec()] (e.g. `rho`, `pval`, `bf`), or the reserved
+#'   passed to [new_corr_data()] (e.g. `rho`, `pval`, `bf`), or the reserved
 #'   keys `title` and `border_text`.
 #'
 #' @return An object of class `c("cm_style", "tabstats_style")`.

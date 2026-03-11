@@ -18,7 +18,7 @@ corr_matrix(
 )
 }
 \arguments{
-\item{display}{A \code{corr_spec} object from \code{new_corr_spec()}, or a plain
+\item{display}{A \code{corr_spec} object from \code{new_corr_data()}, or a plain
 symmetric matrix (e.g. from \code{cor()}).}
 
 \item{title}{Label shown in the title (e.g. \code{"Pearson Correlation Matrix"}).
@@ -37,7 +37,7 @@ Auto-detected from a \code{title} attribute on the spec if present.}
 \item{border_char}{Border character. Default from \code{getOption("tab_default")}.}
 
 \item{style}{A \code{cm_style()} object. Keys match the extra field names passed
-to \code{new_corr_spec()} (e.g. \code{rho}, \code{pval}, \code{bf}), plus \code{title} and
+to \code{new_corr_data()} (e.g. \code{rho}, \code{pval}, \code{bf}), plus \code{title} and
 \code{border_text}.}
 
 \item{...}{Reserved for future use.}
@@ -53,7 +53,7 @@ Display a Correlation Matrix Table in the Console
 corr_matrix(cor(mtcars[, 1:4]), title = "Pearson Correlation Matrix")
 
 # Customizable example
-spec = new_corr_spec(
+spec = new_corr_data(
     var1 = c("a", "a", "b"),
     var2 = c("b", "c", "c"),
     rho = c("0.89", "0.79", "0.66"),

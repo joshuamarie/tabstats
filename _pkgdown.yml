@@ -69,7 +69,7 @@ reference:
     desc: SAS-like Correlation Matrix table
     contents:
     - corr_matrix
-    - new_corr_spec
+    - new_corr_data
     - cm_style
 
   - title: Package Options
