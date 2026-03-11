@@ -15,6 +15,10 @@
 #'   from [td_style()], or a named list where each name is a column name or
 #'   `"title"`, and each value is either a cli style string (e.g. `"blue_bold"`)
 #'   or a function `\(ctx) ...` receiving a context list.
+#' @param style_colnames Styling for column header cells. A `td_style` object
+#'   from [td_style()], or a named list where each name is a column name or
+#'   `"title"`, and each value is either a cli style string (e.g. `"blue_bold"`)
+#'   or a function `\(ctx) ...` receiving a context list.
 #' @param style_columns Styling for data cells. A `td_style` object from
 #'   [td_style()], or a named list where each name is a column name or column
 #'   index as a string, and each value is a cli style string or a function
@@ -29,7 +33,7 @@
 #'
 #' @examples
 #' table_default(head(mtcars))
-#' table_default(head(mtcars), style_columns = list(mpg = "cyan", cyl = "magenta"))
+#' table_default(head(mtcars), style_columns = td_style(mpg = "cyan", cyl = "magenta"))
 #'
 #' @export
 table_default = function(
@@ -92,7 +96,7 @@ table_default = function(
     # ---- Truncation ----------------------------------------------------------
     original_nrow = nrow(x)
     truncated = original_nrow > nrows
-    if (truncated) x = head(x, nrows)
+    if (truncated) x = utils::head(x, nrows)
 
     # ---- Row names -----------------------------------------------------------
     x = tibble::as_tibble(x, rownames = if (show_row_names) "row_names" else NA)

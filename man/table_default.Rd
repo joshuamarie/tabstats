@@ -54,6 +54,11 @@ from \code{\link[=td_style]{td_style()}}, or a named list where each name is a c
 \code{"title"}, and each value is either a cli style string (e.g. \code{"blue_bold"})
 or a function \verb{\\(ctx) ...} receiving a context list.}
 
+\item{style_colnames}{Styling for column header cells. A \code{td_style} object
+from \code{\link[=td_style]{td_style()}}, or a named list where each name is a column name or
+\code{"title"}, and each value is either a cli style string (e.g. \code{"blue_bold"})
+or a function \verb{\\(ctx) ...} receiving a context list.}
+
 \item{style_columns}{Styling for data cells. A \code{td_style} object from
 \code{\link[=td_style]{td_style()}}, or a named list where each name is a column name or column
 index as a string, and each value is a cli style string or a function
@@ -76,6 +81,6 @@ Display a formatted table in the console
 }
 \examples{
 table_default(head(mtcars))
-table_default(head(mtcars), style_columns = list(mpg = "cyan", cyl = "magenta"))
+table_default(head(mtcars), style_columns = td_style(mpg = "cyan", cyl = "magenta"))
 
 }
