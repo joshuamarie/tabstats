@@ -1,17 +1,17 @@
 Package: tabstats
 Type: Package
 Title: Helpers for displaying tables
-Version: 0.1.0
+Version: 0.0.0.9000
 Authors@R: c(
     person(
-      "Joshua", "Marie",
-      email = "joshua.marie.k@gmail.com",
-      role = c("aut", "cre")
+        "Joshua", "Marie",
+        email = "joshua.marie.k@gmail.com",
+        role = c("aut", "cre")
     )
-  )
+    )
 Maintainer: Joshua Marie <joshua.marie.k@gmail.com>
-Description: Collection of functions to print the data frames in command line. 
-    This package provides helpers to display a statistical results in a data frame,
+Description: A lightweight package that consists the collection of functions to print 
+    the data in a table format within command line. This includes a default table, 
     contingency table, correlation matrix, and a summary table in 2 columns form.
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -27,7 +27,8 @@ Imports:
     tidyselect,
     stringr,
     utils,
-    stats
+    stats,
+    vctrs
 Suggests:
     broom,
     rstatix,

@@ -6,7 +6,7 @@
 \alias{tabstats}
 \title{tabstats: Helpers for displaying tables}
 \description{
-Collection of functions to print the data frames in command line. This package provides helpers to display a statistical results in a data frame, contingency table, correlation matrix, and a summary table in 2 columns form.
+A lightweight package that consists the collection of functions to print the data in a table format within command line. This includes a default table, contingency table, correlation matrix, and a summary table in 2 columns form.
 }
 \author{
 \strong{Maintainer}: Joshua Marie \email{joshua.marie.k@gmail.com}
