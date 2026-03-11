@@ -8,7 +8,7 @@
 
 ## Package overview
 
-Title: ***Helpers for displaying tables***
+Title: ***Helpers for Displaying Tables***
 
 ***tabstats*** is a lightweight package in action that assists you to
 print out the data you want to display as a table, with more
@@ -113,6 +113,15 @@ mtcars |>
             layout_view = TRUE
         )
     })
+#> 
+#> ┌───────────────────────────┐
+#> |  Layout for Corr. Matrix  |
+#> ├───────────────────────────┤
+#> |         < corr >          |
+#> |       < statistic >       |
+#> |         < pval >          |
+#> └───────────────────────────┘
+#> 
 #> 
 #>          Pearson Correlation Matrix          
 #> ─────────────────────────────────────────────
