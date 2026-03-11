@@ -1,4 +1,4 @@
 #' @docType package
 #' @name tabstats
-#' @keywords package
+#' @keywords internal
 "_PACKAGE"
