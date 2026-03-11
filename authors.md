@@ -7,7 +7,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/joshuamarie/tabstats/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/joshuamarie/tabstats/blob/v0.1.0/inst/CITATION)
 
 Marie J (2026). *tabstats: Helpers for Displaying Tables*. R package
 version 0.1.0.
