@@ -14,9 +14,29 @@ justify_text = function(text, width, justify = "center") {
 
     width = pmax(width, 0)
 
-    side = ifelse(justify == "left", "right",
-                   ifelse(justify == "right", "left", "both"))
-    stringr::str_pad(text, width, side = side)
+    side = vctrs::vec_if_else(
+        justify == "left", "right",
+        vctrs::vec_if_else(justify == "right", "left", "both")
+    )
+
+    vctrs::vec_c(
+        !!!mapply(
+            function(txt, w, s) {
+                pad = w - nchar(txt)
+                switch(
+                    s,
+                    right = paste0(txt, strrep(" ", pad)),
+                    left = paste0(strrep(" ", pad), txt),
+                    both = paste0(strrep(" ", floor(pad / 2)), txt, strrep(" ", ceiling(pad / 2)))
+                )
+            },
+            text,
+            width,
+            side,
+            SIMPLIFY = FALSE,
+            USE.NAMES = FALSE
+        )
+    )
 }
 
 format_row =

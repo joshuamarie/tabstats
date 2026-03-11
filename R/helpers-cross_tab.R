@@ -7,7 +7,7 @@ center_text_x2 = function(text, width) {
 }
 
 format_number_x2 = function(x) {
-    dplyr::if_else(
+    vctrs::vec_if_else(
         abs(x - round(x)) < 1e-10,
         sprintf("%d", round(x)),
         sprintf("%.1f", x)

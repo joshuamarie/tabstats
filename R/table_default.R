@@ -100,10 +100,14 @@ table_default = function(
 
     # ---- Row names -----------------------------------------------------------
     x = tibble::as_tibble(x, rownames = if (show_row_names) "row_names" else NA)
-    if (show_row_names && !"row_names" %in% names(x))
-        x = dplyr::mutate(x, row_names = as.character(seq_len(nrow(x))), .before = 1)
-    else if (show_row_names)
-        x = dplyr::relocate(x, "row_names", .before = 1)
+    if (show_row_names && !"row_names" %in% names(x)) {
+        # x = dplyr::mutate(x, row_names = as.character(seq_len(nrow(x))), .before = 1)
+        x$row_names = as.character(seq_len(nrow(x)))
+        x = x[, c("row_names", setdiff(names(x), "row_names")), drop = FALSE]
+    } else if (show_row_names) {
+        # x = dplyr::relocate(x, "row_names", .before = 1)
+        x = x[, c("row_names", setdiff(names(x), "row_names")), drop = FALSE]
+    }
 
     original_x = x
 
@@ -167,7 +171,9 @@ data_formatter = function(
     scientific,
     na_print
 ) {
-    x = dplyr::mutate(x, dplyr::across(tidyselect::where(is.factor), as.character))
+    # x = dplyr::mutate(x, dplyr::across(tidyselect::where(is.factor), as.character))
+    i = vapply(x, is.factor, logical(1))
+    x[i] = lapply(x[i], as.character)
 
     fmt_num = function(col, col_name) {
         d = digits_by_col[[col_name]] %||% digits
@@ -189,12 +195,27 @@ data_formatter = function(
     for (nm in names(x)[vapply(x, is.numeric, FUN.VALUE = logical(1))])
         x[[nm]] = fmt_num(x[[nm]], nm)
 
-    x = dplyr::mutate(
-        x,
-        dplyr::across(tidyselect::where(\(c) !is.numeric(c) && !is.character(c)), as.character),
-        dplyr::across(tidyselect::where(\(c) !is.numeric(c)), \(c) ifelse(is.na(c), "NA", c)),
-        dplyr::across(dplyr::everything(), as.character)
-    )
+    # x = dplyr::mutate(
+    #     x,
+    #     dplyr::across(tidyselect::where(\(c) !is.numeric(c) && !is.character(c)), as.character),
+    #     dplyr::across(tidyselect::where(\(c) !is.numeric(c)), \(c) ifelse(is.na(c), "NA", c)),
+    #     dplyr::across(dplyr::everything(), as.character)
+    # )
+    # x
+    for (i in seq_along(x)) {
+        col = x[[i]]
+
+        if (!is.numeric(col) && !is.character(col)) {
+            col = as.character(col)
+        }
+
+        if (!is.numeric(col)) {
+            col[is.na(col)] = "NA"
+        }
+
+        x[[i]] = as.character(col)
+    }
+
     x
 }
 
