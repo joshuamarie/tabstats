@@ -14,23 +14,19 @@ knitr::opts_chunk$set(
 
 desc = read.dcf("DESCRIPTION")
 desc = setNames(as.list(desc), colnames(desc))
-
 library(tabstats)
 ```
 
 # `r desc$Package` <img src="man/figures/logo.png" align="right" alt="" width="120"/>
 
-<!-- [![CRAN status](https://www.r-pkg.org/badges/version/tabstats)](https://CRAN.R-project.org/package=tabstats) -->
+[![CRAN status](https://www.r-pkg.org/badges/version/tabstats)](https://CRAN.R-project.org/package=tabstats)
 [![R-CMD-check](https://github.com/joshuamarie/tabstats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/joshuamarie/tabstats/actions/workflows/R-CMD-check.yaml)
-<!-- [![Codecov test coverage](https://codecov.io/gh/joshuamarie/tabstats/graph/badge.svg)](https://app.codecov.io/gh/joshuamarie/tabstats) -->
 
 ## Package overview
 
 Title: ***`r desc$Title`***
 
-***`r desc$Package`*** is a lightweight package in action that assists you to print out the data you want to display as a table, with more enchantments that customizes table with styles and alignment. This is especially useful in displaying statistical results in R console/command line as a table.
-
-> The package is currently **under construction** and not yet available on CRAN.
+***`r desc$Package`*** is a lightweight package in action, ideal for development, that allows end users to print out the data they want to present as a table in the command line, with further enhancements that modify the table with styles and alignment. This is very useful when displaying statistical results on the R console/command line as a table.
 
 ## Installation
 
@@ -52,7 +48,7 @@ pak::pak("joshuamarie/tabstats")
 
 Here’s a basic example that demonstrates how to use `tabstats` to format and style a table:
 
-```{r example}
+```{r}
 table_default(head(mtcars, 5))
 ```
 
@@ -65,5 +61,3 @@ This package allows end users to apply advanced styling and alignment to tables,
 ## Code of Conduct
 
 Please note that the `tabstats` project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
-
-

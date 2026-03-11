@@ -1,10 +1,9 @@
 
 # tabstats <img src="man/figures/logo.png" align="right" alt="" width="120"/>
 
-<!-- [![CRAN status](https://www.r-pkg.org/badges/version/tabstats)](https://CRAN.R-project.org/package=tabstats) -->
-
+[![CRAN
+status](https://www.r-pkg.org/badges/version/tabstats)](https://CRAN.R-project.org/package=tabstats)
 [![R-CMD-check](https://github.com/joshuamarie/tabstats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/joshuamarie/tabstats/actions/workflows/R-CMD-check.yaml)
-<!-- [![Codecov test coverage](https://codecov.io/gh/joshuamarie/tabstats/graph/badge.svg)](https://app.codecov.io/gh/joshuamarie/tabstats) -->
 
 ## Package overview
 
