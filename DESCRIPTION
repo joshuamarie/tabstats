@@ -38,6 +38,8 @@ Suggests:
     tidyr,
     testthat (>= 3.0.0),
     knitr,
-    rmarkdown
+    rmarkdown,
+    fansi, 
+    crayon
 Config/testthat/edition: 3
 VignetteBuilder: knitr
