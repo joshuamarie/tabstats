@@ -1,5 +1,5 @@
 
-# tabstats
+# tabstats <img src="man/figures/logo.png" align="right" alt="" width="120"/>
 
 <!-- [![CRAN status](https://www.r-pkg.org/badges/version/tabstats)](https://CRAN.R-project.org/package=tabstats) -->
 
@@ -21,11 +21,18 @@ line as a table.
 
 ## Installation
 
-You can install the development version of `tabstats` from GitHub with:
+Install the following package from CRAN:
+
+``` r
+install.packages("tabstats")
+```
+
+Or install the development version from GitHub:
 
 ``` r
 # install.packages("pak")
 pak::pak("joshuamarie/tabstats")
+## devtools::install_github("joshuamarie/tabstats") 
 ```
 
 ## Example
