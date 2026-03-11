@@ -49,11 +49,17 @@ table_default(
 
 \item{n_space}{Spaces between columns. Default \code{2}.}
 
-\item{title}{Optional title string above the table.}
+\item{title}{Optional title string above the table.
+from \code{\link[=td_style]{td_style()}}, or a named list where each name is a column name or
+\code{"title"}, and each value is either a cli style string (e.g. \code{"blue_bold"})
+or a function \verb{\\(ctx) ...} receiving a context list.}
 
-\item{style_colnames}{Styling for column headers (cli string or lambda).}
-
-\item{style_columns}{Styling for data cells (cli string or lambda).}
+\item{style_columns}{Styling for data cells. A \code{td_style} object from
+\code{\link[=td_style]{td_style()}}, or a named list where each name is a column name or column
+index as a string, and each value is a cli style string or a function
+\verb{\\(ctx) ...} receiving a context list with elements \code{value},
+\code{formatted_value}, \code{col_name}, \code{col_index}, \code{is_header}, \code{data},
+\code{justify}, and \code{width}.}
 
 \item{nrows}{Max rows to display before truncation.}
 

@@ -12,8 +12,15 @@
 #' @param center_table Center table in terminal? Default `FALSE`.
 #' @param n_space Spaces between columns. Default `2`.
 #' @param title Optional title string above the table.
-#' @param style_colnames Styling for column headers (cli string or lambda).
-#' @param style_columns Styling for data cells (cli string or lambda).
+#'   from [td_style()], or a named list where each name is a column name or
+#'   `"title"`, and each value is either a cli style string (e.g. `"blue_bold"`)
+#'   or a function `\(ctx) ...` receiving a context list.
+#' @param style_columns Styling for data cells. A `td_style` object from
+#'   [td_style()], or a named list where each name is a column name or column
+#'   index as a string, and each value is a cli style string or a function
+#'   `\(ctx) ...` receiving a context list with elements `value`,
+#'   `formatted_value`, `col_name`, `col_index`, `is_header`, `data`,
+#'   `justify`, and `width`.
 #' @param nrows Max rows to display before truncation.
 #' @param vb Vertical border spec: `list(char = "\u2502", after = c(1, 3))`.
 #' @param auto_wrap Auto-wrap wide tables? Default `TRUE`.
@@ -24,8 +31,6 @@
 #' table_default(head(mtcars))
 #' table_default(head(mtcars), style_columns = list(mpg = "cyan", cyl = "magenta"))
 #'
-#' @importFrom cli console_width col_red col_blue col_green cli_alert_info cli_alert_warning
-#' @importFrom utils head
 #' @export
 table_default = function(
     x,
@@ -54,6 +59,22 @@ table_default = function(
         x = try(as.data.frame(x), silent = TRUE)
         if (inherits(x, "try-error"))
             stop("`x` must be a data frame or coercible to one.", call. = FALSE)
+    }
+
+    # ---- Validate style ----
+
+    if (!is.null(style_colnames) && !inherits(style_colnames, "td_style")) {
+        cli::cli_abort(
+            "{.arg style_colnames} must be a {.cls td_style} object.",
+            "i" = "Use {.fn td_style} to build one."
+        )
+    }
+
+    if (!is.null(style_columns) && !inherits(style_columns, "td_style")) {
+        cli::cli_abort(
+            "{.arg style_columns} must be a {.cls td_style} object.",
+            "i" = "Use {.fn td_style} to build one."
+        )
     }
 
     # ---- Validate scalar params ----------------------------------------------

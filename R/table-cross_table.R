@@ -10,9 +10,7 @@
 #' @param digits Named list with keys `ex`, `row_pct`, `col_pct`, `total_pct`.
 #'   Falls back to `getOption("ct_digits")`.
 #' @param center_table Center entire table in terminal? Default `FALSE`.
-#' @param style Named list for styling components: `observed`, `expected`, `total`,
-#'   `row_percentage`, `col_percentage`, `total_percentage`, `title`, `border`, `border_text`.
-#'   Each can be a cli-style string (e.g. `"blue_bold"`) or a lambda `function(ctx)`.
+#' @param style Named list supplied using [ct_style()].
 #' @param ... Reserved for future use.
 #'
 #' @return Invisibly returns the formatted cross-tabulation matrix.
@@ -34,6 +32,17 @@ cross_table = function(
         style = NULL,
         ...
 ) {
+    # ---- Validate style ----
+    if (!is.null(style) && !is.list(style))
+        cli::cli_abort("{.arg style} must be a list or a style object (e.g. {.fn sm_style}).")
+
+    if (inherits(style, "tabstats_style") && !inherits(style, "sm_style")) {
+        cli::cli_abort(
+            "{.arg style} must be an {.cls sm_style} object for {.fn table_summary}.",
+            "x" = "Got {.cls {class(style)[1]}}."
+        )
+    }
+
     observed = as.matrix(data)
     row_totals = rowSums(observed)
     col_totals = colSums(observed)

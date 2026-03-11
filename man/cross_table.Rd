@@ -36,9 +36,7 @@ Falls back to \code{getOption("ct_digits")}.}
 
 \item{center_table}{Center entire table in terminal? Default \code{FALSE}.}
 
-\item{style}{Named list for styling components: \code{observed}, \code{expected}, \code{total},
-\code{row_percentage}, \code{col_percentage}, \code{total_percentage}, \code{title}, \code{border}, \code{border_text}.
-Each can be a cli-style string (e.g. \code{"blue_bold"}) or a lambda \verb{function(ctx)}.}
+\item{style}{Named list supplied using \code{\link[=ct_style]{ct_style()}}.}
 
 \item{...}{Reserved for future use.}
 }

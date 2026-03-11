@@ -46,6 +46,18 @@ corr_matrix = function(
     if (!requireNamespace("cli", quietly = TRUE))
         stop("The 'cli' package is required. Please install it.")
 
+    # ---- Validate style ----
+
+    if (!is.null(style) && !is.list(style))
+        cli::cli_abort("{.arg style} must be a list or a style object (e.g. {.fn sm_style}).")
+
+    if (inherits(style, "tabstats_style") && !inherits(style, "sm_style")) {
+        cli::cli_abort(
+            "{.arg style} must be an {.cls sm_style} object for {.fn table_summary}.",
+            "x" = "Got {.cls {class(style)[1]}}."
+        )
+    }
+
     # ---- Coerce input --------------------------------------------------------
     spec = if (is.matrix(display)) {
         matrix_spec_resolver_cm(display, digits)

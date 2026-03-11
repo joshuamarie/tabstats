@@ -4,12 +4,20 @@
 \name{tabstats}
 \alias{tabstats-package}
 \alias{tabstats}
-\title{tabstats: Helpers for displaying tables}
+\title{tabstats: Helpers for Displaying Tables}
 \description{
 A lightweight package that consists the collection of functions to print the data in a table format within command line. This includes a default table, contingency table, correlation matrix, and a summary table in 2 columns form.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/joshuamarie/tabstats}
+  \item Report bugs at \url{https://github.com/joshuamarie/tabstats/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Joshua Marie \email{joshua.marie.k@gmail.com}
 
 }
-\keyword{package}
+\keyword{internal}

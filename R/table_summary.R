@@ -48,7 +48,8 @@
 #'
 #' # Use styling and alignment
 #' table_summary(
-#'     df, header = TRUE,
+#'     df,
+#'     header = TRUE,
 #'     style = list(
 #'         left_col = "blue_bold",
 #'         right_col = "red",
@@ -60,8 +61,9 @@
 #'
 #' # Use custom styling with lambda functions
 #' table_summary(
-#'     df, header = TRUE,
-#'     style = list(
+#'     df,
+#'     header = TRUE,
+#'     style = sm_style(
 #'         left_col = \(ctx) cli::col_red(ctx), # ctx$value is another option
 #'         right_col = \(ctx) cli::col_blue(ctx)
 #'     ),
@@ -69,106 +71,123 @@
 #' )
 #'
 #' @export
-table_summary = function(data, title = NULL, l = NULL, header = FALSE,
-                         center_table = FALSE, border_char = "-",
-                         style = list(), align = NULL, ...) {
+table_summary =
+    function(
+        data,
+        title = NULL,
+        l = NULL,
+        header = FALSE,
+        center_table = FALSE,
+        border_char = "-",
+        style = list(), align = NULL, ...
+    ) {
 
-    if (!is.data.frame(data) || ncol(data) != 2)
-        stop("Input must be a data frame with exactly 2 columns.")
+        if (!is.data.frame(data) || ncol(data) != 2)
+            cli::cli_abort("Input must be a data frame with exactly 2 columns.")
 
-    col_names = colnames(data)
-    data_matrix = as.matrix(data)
-    sep_width = if (!is.null(style$sep)) nchar(paste0(" ", style$sep, " ")) else 4
+        if (!is.null(style) && !is.list(style))
+            cli::cli_abort("{.arg style} must be a list or a style object (e.g. {.fn sm_style}).")
 
-    w = compute_widths(data_matrix, col_names, l, sep_width)
-
-    # ---- Border line ----
-    h_line = strrep(border_char, w$full_width)
-    styled_h_line =
-        if (!is.null(style$border_text)) {
-            apply_style(style$border_text, h_line)
-        } else {
-            h_line
-        }
-
-    # ---- Optional centering prefix ----
-    prefix = ""
-    if (center_table) {
-        term_width = tryCatch(
-            as.numeric(system("tput cols", intern = TRUE)),
-            error = function(e)
-                as.double(options("width"))
-        )
-        prefix = strrep(" ", max(0L, floor((term_width - w$full_width) / 2)))
-    }
-
-    # ---- Title ----
-    if (!is.null(title)) {
-        fmt_title = center_text(title, w$full_width)
-        if (!is.null(style$title))
-            fmt_title = apply_style(style$title, fmt_title)
-
-        cat("\n", prefix, fmt_title, "\n", sep = "")
-    }
-
-    cat(prefix, styled_h_line, "\n", sep = "")
-
-    # ---- Header row ----
-    if (header) {
-        header_row = if (w$is_split) {
-            paste0(
-                format_row_summary(col_names[1], col_names[2],
-                                   w$left_left_width, w$left_right_width,
-                                   style = style),
-                "  ",
-                format_row_summary(col_names[1], col_names[2],
-                                   w$right_left_width, w$right_right_width,
-                                   style = style)
+        if (inherits(style, "tabstats_style") && !inherits(style, "sm_style")) {
+            cli::cli_abort(
+                "{.arg style} must be an {.cls sm_style} object for {.fn table_summary}.",
+                "x" = "Got {.cls {class(style)[1]}}."
             )
-        } else {
-            format_row_summary(col_names[1], col_names[2],
-                               w$left_width, w$right_width,
-                               style = style)
         }
-        cat(prefix, header_row, "\n", sep = "")
+
+        col_names = colnames(data)
+        data_matrix = as.matrix(data)
+        sep_width = if (!is.null(style$sep)) nchar(paste0(" ", style$sep, " ")) else 4
+
+        w = compute_widths(data_matrix, col_names, l, sep_width)
+
+        # ---- Border line ----
+        h_line = strrep(border_char, w$full_width)
+        styled_h_line =
+            if (!is.null(style$border_text)) {
+                apply_style(style$border_text, h_line)
+            } else {
+                h_line
+            }
+
+        # ---- Optional centering prefix ----
+        prefix = ""
+        if (center_table) {
+            term_width = tryCatch(
+                as.numeric(system("tput cols", intern = TRUE)),
+                error = function(e)
+                    as.double(options("width"))
+            )
+            prefix = strrep(" ", max(0L, floor((term_width - w$full_width) / 2)))
+        }
+
+        # ---- Title ----
+        if (!is.null(title)) {
+            fmt_title = center_text(title, w$full_width)
+            if (!is.null(style$title))
+                fmt_title = apply_style(style$title, fmt_title)
+
+            cat("\n", prefix, fmt_title, "\n", sep = "")
+        }
+
         cat(prefix, styled_h_line, "\n", sep = "")
-    }
 
-    # ---- Data rows ----
-    if (!w$is_split) {
-        for (i in seq_len(nrow(data_matrix))) {
-            cat(
-                prefix,
-                format_row_summary(data_matrix[i, 1], data_matrix[i, 2],
-                                   w$left_width, w$right_width,
-                                   align = align, style = style),
-                "\n",
-                sep = ""
-            )
-        }
-    } else {
-        n_rows_out = max(nrow(w$left_table), nrow(w$right_table))
-        for (i in seq_len(n_rows_out)) {
-            lr = if (i <= nrow(w$left_table))  w$left_table[i, ]  else c("", "")
-            rr = if (i <= nrow(w$right_table)) w$right_table[i, ] else c("", "")
-
-            cat(
-                prefix,
+        # ---- Header row ----
+        if (header) {
+            header_row = if (w$is_split) {
                 paste0(
-                    format_row_summary(lr[1], lr[2],
+                    format_row_summary(col_names[1], col_names[2],
                                        w$left_left_width, w$left_right_width,
-                                       align = align, style = style),
+                                       style = NULL),
                     "  ",
-                    format_row_summary(rr[1], rr[2],
+                    format_row_summary(col_names[1], col_names[2],
                                        w$right_left_width, w$right_right_width,
-                                       align = align, style = style)
-                ),
-                "\n",
-                sep = ""
-            )
+                                       style = NULL)
+                )
+            } else {
+                format_row_summary(col_names[1], col_names[2],
+                                   w$left_width, w$right_width,
+                                   style = NULL)
+            }
+            cat(prefix, header_row, "\n", sep = "")
+            cat(prefix, styled_h_line, "\n", sep = "")
         }
-    }
 
-    cat(prefix, styled_h_line, "\n", sep = "")
-    invisible(NULL)
-}
+        # ---- Data rows ----
+        if (!w$is_split) {
+            for (i in seq_len(nrow(data_matrix))) {
+                cat(
+                    prefix,
+                    format_row_summary(data_matrix[i, 1], data_matrix[i, 2],
+                                       w$left_width, w$right_width,
+                                       align = align, style = style),
+                    "\n",
+                    sep = ""
+                )
+            }
+        } else {
+            n_rows_out = max(nrow(w$left_table), nrow(w$right_table))
+            for (i in seq_len(n_rows_out)) {
+                lr = if (i <= nrow(w$left_table))  w$left_table[i, ]  else c("", "")
+                rr = if (i <= nrow(w$right_table)) w$right_table[i, ] else c("", "")
+
+                cat(
+                    prefix,
+                    paste0(
+                        format_row_summary(lr[1], lr[2],
+                                           w$left_left_width, w$left_right_width,
+                                           align = align, style = style),
+                        "  ",
+                        format_row_summary(rr[1], rr[2],
+                                           w$right_left_width, w$right_right_width,
+                                           align = align, style = style)
+                    ),
+                    "\n",
+                    sep = ""
+                )
+            }
+        }
+
+        cat(prefix, styled_h_line, "\n", sep = "")
+        invisible(NULL)
+    }

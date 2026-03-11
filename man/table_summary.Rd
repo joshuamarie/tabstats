@@ -78,7 +78,8 @@ table_summary(df, l = 2, center_table = TRUE)
 
 # Use styling and alignment
 table_summary(
-    df, header = TRUE,
+    df,
+    header = TRUE,
     style = list(
         left_col = "blue_bold",
         right_col = "red",
@@ -90,8 +91,9 @@ table_summary(
 
 # Use custom styling with lambda functions
 table_summary(
-    df, header = TRUE,
-    style = list(
+    df,
+    header = TRUE,
+    style = sm_style(
         left_col = \(ctx) cli::col_red(ctx), # ctx$value is another option
         right_col = \(ctx) cli::col_blue(ctx)
     ),
