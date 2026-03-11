@@ -1,7 +1,7 @@
 Package: tabstats
 Type: Package
 Title: Helpers for Displaying Tables
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: c(
     person(
         "Joshua", "Marie",
@@ -23,14 +23,11 @@ Depends:
 URL: https://github.com/joshuamarie/tabstats
 BugReports: https://github.com/joshuamarie/tabstats/issues
 Imports:
-    dplyr,
     cli,
     tibble,
-    tidyselect,
-    stringr,
+    vctrs,
     utils,
-    stats,
-    vctrs
+    stats
 Suggests:
     broom,
     rstatix,
@@ -40,6 +37,7 @@ Suggests:
     knitr,
     rmarkdown,
     fansi, 
-    crayon
+    crayon,
+    dplyr
 Config/testthat/edition: 3
 VignetteBuilder: knitr
