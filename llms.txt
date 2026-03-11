@@ -1,5 +1,7 @@
 # tabstats
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/tabstats)](https://CRAN.R-project.org/package=tabstats)
 [![R-CMD-check](https://github.com/joshuamarie/tabstats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/joshuamarie/tabstats/actions/workflows/R-CMD-check.yaml)
 
 ## Package overview
