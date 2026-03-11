@@ -6,6 +6,8 @@
 \alias{tabstats}
 \title{tabstats: Helpers for Displaying Tables}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 A lightweight package that consists the collection of functions to print the data in a table format within command line. This includes a default table, contingency table, correlation matrix, and a summary table in 2 columns form.
 }
 \seealso{
