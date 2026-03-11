@@ -307,3 +307,37 @@ test_that("handles multiple remapped indices", {
     result = vb_remap(c(2L, 4L), c(1L, 2L, 4L, 6L))
     expect_equal(result, c(2L, 3L))
 })
+
+# ---- Justify Columns ----
+test_that("Justify columns", {
+    # Bare column
+    expect_no_error({
+        table_default(
+            head(iris, 5),
+            justify_cols = list(Sepal.Length = "left")
+        )
+    })
+    # Indexed column
+    expect_no_error({
+        table_default(
+            head(iris, 5),
+            justify_cols = list("1" = "left")
+        )
+    })
+    # Right Alignment
+    expect_no_error({
+        table_default(
+            head(iris, 5),
+            justify_cols = list(Sepal.Length = "right")
+        )
+    })
+    # Center Alignment
+    expect_no_error({
+        table_default(
+            head(iris, 5),
+            justify_cols = list(Sepal.Length = "center")
+        )
+    })
+})
+
+
