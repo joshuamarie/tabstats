@@ -1,0 +1,98 @@
+url: https://joshuamarie.github.io/tabstats
+
+template:
+  bootstrap: 5
+  light-switch: true
+  bootswatch: flatly
+  bslib:
+    base_font: {google: "Viaoda Libre"}
+    heading_font: {google: "Viaoda Libre"}
+    code_font: {google: "Fira Mono"}
+    primary: "#0054AD"
+    link-color: "#0054AD"
+  math-rendering: katex
+
+home:
+  title: "tabstats • Helpers for Displaying Tables"
+  description: >
+    Lightweight package for displaying tables in table format.
+
+navbar:
+  type: light
+  structure:
+    left: [intro, reference, articles, tutorials, news]
+    right: [search, github, lightswitch, blog]
+  components:
+    intro:
+      text: Get started
+      href: articles/tabstats.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    articles:
+      text: Articles
+      menu:
+        - text: Getting Started
+          href: articles/tabstats.html
+    blog:
+      text: Blog
+      icon: fa-blog
+      href: https://joshuamarie.com
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/joshuamarie/kindling
+      aria-label: GitHub
+
+reference:
+  - title: Main API
+    desc: Main functions used to produce tables
+
+  - subtitle: APA-style table
+    desc: The default table using the data frame
+    contents:
+    - table_default
+    - td_style
+
+  - subtitle: Summary Table
+    desc: Two-column key-value summary display
+    contents:
+    - table_summary
+    - sm_style
+
+  - subtitle: Contingency Table
+    desc: Complete contingency table displayer
+    contents:
+    - cross_table
+    - ct_style
+
+  - subtitle: Correlation Matrix Table
+    desc: SAS-like Correlation Matrix table
+    contents:
+    - corr_matrix
+    - new_corr_spec
+    - cm_style
+
+  - title: Package Options
+    desc: Simple function to tweak options in the package
+    contents:
+    - tabstats_options
+
+articles:
+  - title: Get started
+    navbar: ~
+    contents:
+    - tabstats
+
+footer:
+  structure:
+    left: developed_by
+    right: built_with
+  components:
+    built_with: >
+      Built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>.
+      Visit my <a href="https://joshuamarie.com">blog</a> for more content.
+
+development:
+  mode: auto
+  version_label: default
+  version_tooltip: "Version"
