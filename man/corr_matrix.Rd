@@ -6,7 +6,7 @@
 \usage{
 corr_matrix(
   display,
-  method = NULL,
+  title = NULL,
   diag_1 = TRUE,
   digits = 3,
   layout_view = FALSE,
@@ -21,8 +21,8 @@ corr_matrix(
 \item{display}{A \code{corr_spec} object from \code{new_corr_spec()}, or a plain
 symmetric matrix (e.g. from \code{cor()}).}
 
-\item{method}{Label shown in the title (e.g. \code{"Pearson"}). Auto-detected
-from a \code{method} attribute on the spec if present.}
+\item{title}{Label shown in the title (e.g. \code{"Pearson Correlation Matrix"}).
+Auto-detected from a \code{title} attribute on the spec if present.}
 
 \item{diag_1}{If \code{TRUE}, diagonal cells always show \code{"1"}. Default \code{TRUE}.}
 
@@ -36,9 +36,9 @@ from a \code{method} attribute on the spec if present.}
 
 \item{border_char}{Border character. Default from \code{getOption("tab_default")}.}
 
-\item{style}{Named list of style specs. Keys match the extra field names
-passed to \code{new_corr_spec()} (e.g. \code{rho}, \code{pval}, \code{bf}), plus \code{title} and
-\code{border_text}. Each value can be a cli-style string or a \verb{function(x)}.}
+\item{style}{A \code{cm_style()} object. Keys match the extra field names passed
+to \code{new_corr_spec()} (e.g. \code{rho}, \code{pval}, \code{bf}), plus \code{title} and
+\code{border_text}.}
 
 \item{...}{Reserved for future use.}
 }
@@ -50,7 +50,7 @@ Display a Correlation Matrix Table in the Console
 }
 \examples{
 # From a plain correlation matrix, e.g. using `cor()`
-corr_matrix(cor(mtcars[, 1:4]), method = "Pearson")
+corr_matrix(cor(mtcars[, 1:4]), title = "Pearson Correlation Matrix")
 
 # Customizable example
 spec = new_corr_spec(
@@ -59,6 +59,6 @@ spec = new_corr_spec(
     rho = c("0.89", "0.79", "0.66"),
     pval = c("<0.001", "<0.001", "<0.001")
 )
-corr_matrix(spec, method = "Pearson", layout_view = TRUE)
+corr_matrix(spec, title = "Pearson Correlation Matrix", layout_view = TRUE)
 
 }

@@ -2,24 +2,24 @@
 #'
 #' @param display A `corr_spec` object from `new_corr_spec()`, or a plain
 #'   symmetric matrix (e.g. from `cor()`).
-#' @param method Label shown in the title (e.g. `"Pearson"`). Auto-detected
-#'   from a `method` attribute on the spec if present.
+#' @param title Label shown in the title (e.g. `"Pearson Correlation Matrix"`).
+#'   Auto-detected from a `title` attribute on the spec if present.
 #' @param diag_1 If `TRUE`, diagonal cells always show `"1"`. Default `TRUE`.
 #' @param digits Decimal places for numeric formatting. Default `3`.
 #' @param layout_view Show a layout legend box above the table? Default `FALSE`.
 #' @param layout_center Center the layout box in the terminal? Default `FALSE`.
 #' @param center_table Center table in terminal? Default `FALSE`.
 #' @param border_char Border character. Default from `getOption("tab_default")`.
-#' @param style Named list of style specs. Keys match the extra field names
-#'   passed to `new_corr_spec()` (e.g. `rho`, `pval`, `bf`), plus `title` and
-#'   `border_text`. Each value can be a cli-style string or a `function(x)`.
+#' @param style A `cm_style()` object. Keys match the extra field names passed
+#'   to `new_corr_spec()` (e.g. `rho`, `pval`, `bf`), plus `title` and
+#'   `border_text`.
 #' @param ... Reserved for future use.
 #'
 #' @return Invisibly returns the rendered character matrix.
 #'
 #' @examples
 #' # From a plain correlation matrix, e.g. using `cor()`
-#' corr_matrix(cor(mtcars[, 1:4]), method = "Pearson")
+#' corr_matrix(cor(mtcars[, 1:4]), title = "Pearson Correlation Matrix")
 #'
 #' # Customizable example
 #' spec = new_corr_spec(
@@ -28,12 +28,12 @@
 #'     rho = c("0.89", "0.79", "0.66"),
 #'     pval = c("<0.001", "<0.001", "<0.001")
 #' )
-#' corr_matrix(spec, method = "Pearson", layout_view = TRUE)
+#' corr_matrix(spec, title = "Pearson Correlation Matrix", layout_view = TRUE)
 #'
 #' @export
 corr_matrix = function(
         display,
-        method = NULL,
+        title = NULL,
         diag_1 = TRUE,
         digits = 3,
         layout_view = FALSE,
@@ -67,11 +67,11 @@ corr_matrix = function(
         stop("`display` must be a `corr_spec` object or a symmetric matrix.", call. = FALSE)
     }
 
-    method = if (is.null(method)) {
-        m = attr(spec, "method")
-        if (is.null(m)) "Unknown" else m
+    title = if (is.null(title)) {
+        t = attr(spec, "title")
+        if (is.null(t)) "Correlation Matrix" else t
     } else {
-        method
+        title
     }
 
     style = style_resolver_cm(style, names(spec$extras))
@@ -149,7 +149,6 @@ corr_matrix = function(
     styled = matrix_styler_cm(mat, field_names, style)
 
     # ---- Print ---------------------------------------------------------------
-    title = paste(method, "Correlation Matrix")
     cat("\n", prefix, style[["title"]](align_center(title, total_width)), "\n", sep = "")
     cat(prefix, hline, "\n", sep = "")
     cat(prefix, format_row_cm(col_names, col_widths, left_align_first = TRUE), "\n", sep = "")
@@ -176,7 +175,7 @@ matrix_spec_resolver_cm = function(m, digits) {
         var2 = vctrs::vec_cast(new_m[[2]], character()),
         corr = format(new_m[[3]], digits = digits)
     )
-    attr(spec, "method") = "Unknown"
+    attr(spec, "title") = "Correlation Matrix"
     spec
 }
 
@@ -246,11 +245,14 @@ print_layout_cm = function(field_names, style, border_char, layout_center, cente
     )
     for (nm in field_names) {
         label = paste0("< ", nm, " >")
-        styled_label = tryCatch(style[[nm]](label), error = function(e) NULL)
+        styled_label = tryCatch(
+            style[[nm]](label),
+            warning = function(w) NULL,
+            error = function(e) NULL
+        )
         if (is.null(styled_label)) {
-            probe = tryCatch(style[[nm]]("1"), error = function(e) NULL)
+            probe = tryCatch(style[[nm]]("0.001"), error = function(e) NULL)
             styled_label = if (!is.null(probe)) {
-                # Extract all leading escapes and all trailing escapes from probe
                 pre  = regmatches(probe, regexpr("^(\033\\[[0-9;]*m)+", probe))
                 post = regmatches(probe, regexpr("(\033\\[[0-9;]*m)+$", probe))
                 if (length(pre) && length(post)) paste0(pre, label, post) else label
