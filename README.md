@@ -34,114 +34,20 @@ Here’s a basic example that demonstrates how to use `tabstats` to format
 and style a table:
 
 ``` r
-library(tabstats)
-
-mtcars |> 
-    rstatix::cor_test(wt, disp, mpg) |> 
-    dplyr::mutate(
-        var1,
-        var2,
-        cor = format(cor, digits = 2),
-        statistic = format(statistic, digits = 2), 
-        p = format(p, digits = 2),
-        
-        .keep = "unused"
-    ) |> 
-    dplyr::filter(var1 != var2) |> 
-    with({
-        corr_matrix(
-            new_corr_spec(
-                var1 = var1,
-                var2 = var2,
-                corr = cor,
-                statistic = statistic,
-                pval = p
-            ),
-            method = "Pearson"
-        )
-    })
-#> 
-#>          Pearson Correlation Matrix          
-#> ─────────────────────────────────────────────
-#>   Variable      wt        disp       mpg     
-#> ─────────────────────────────────────────────
-#>   wt                      0.89      -0.87    
-#>                          1.1e+01   -9.6e+00  
-#>                          1.2e-11    1.3e-10  
-#> ─────────────────────────────────────────────
-#>   disp         0.89                 -0.85    
-#>               1.1e+01              -8.7e+00  
-#>               1.2e-11               9.4e-10  
-#> ─────────────────────────────────────────────
-#>   mpg         -0.87      -0.85               
-#>              -9.6e+00   -8.7e+00             
-#>               1.3e-10    9.4e-10             
-#> ─────────────────────────────────────────────
+table_default(head(mtcars, 5))
+#> ────────────────────────────────────────────────────────────────────
+#>    mpg    cyl  disp  hp   drat    wt     qsec   vs  am  gear  carb  
+#> ────────────────────────────────────────────────────────────────────
+#>   21.000   6   160   110  3.900  2.620  16.460  0   1    4     4    
+#>   21.000   6   160   110  3.900  2.875  17.020  0   1    4     4    
+#>   22.800   4   108   93   3.850  2.320  18.610  1   1    4     1    
+#>   21.400   6   258   110  3.080  3.215  19.440  1   0    3     1    
+#>   18.700   8   360   175  3.150  3.440  17.020  0   0    3     2    
+#> ────────────────────────────────────────────────────────────────────
 ```
 
 This package allows end users to apply advanced styling and alignment to
-tables, such as color coding, column alignment, and borders, making it
-easier to view large datasets directly in the command line.
-
-Here’s an example:
-
-``` r
-mtcars |> 
-    rstatix::cor_test(wt, disp, mpg) |> 
-    dplyr::mutate(
-        var1,
-        var2,
-        cor = format(cor, digits = 2),
-        statistic = format(statistic, digits = 2), 
-        p = format(p, digits = 2),
-        
-        .keep = "unused"
-    ) |> 
-    with({
-        tabstats::corr_matrix(
-            new_corr_spec(
-                var1 = var1,
-                var2 = var2,
-                corr = cor,
-                statistic = statistic,
-                pval = p
-            ),
-            style = list(
-                pval = \(x) if (x > 0.05) cli::style_italic(x) else cli::col_red(x)
-            ),
-            method = "Pearson",
-            layout_view = TRUE
-        )
-    })
-#> 
-#> ┌───────────────────────────┐
-#> |  Layout for Corr. Matrix  |
-#> ├───────────────────────────┤
-#> |         < corr >          |
-#> |       < statistic >       |
-#> |         < pval >          |
-#> └───────────────────────────┘
-#> 
-#> 
-#>          Pearson Correlation Matrix          
-#> ─────────────────────────────────────────────
-#>   Variable      wt        disp       mpg     
-#> ─────────────────────────────────────────────
-#>   wt            1         0.89      -0.87    
-#>                          1.1e+01   -9.6e+00  
-#>                          1.2e-11    1.3e-10  
-#> ─────────────────────────────────────────────
-#>   disp         0.89        1        -0.85    
-#>               1.1e+01              -8.7e+00  
-#>               1.2e-11               9.4e-10  
-#> ─────────────────────────────────────────────
-#>   mpg         -0.87      -0.85        1      
-#>              -9.6e+00   -8.7e+00             
-#>               1.3e-10    9.4e-10             
-#> ─────────────────────────────────────────────
-```
-
-> Now, the displayed values for `pval` is marked with red color.
+tables, such as color coding, column alignment, and borders.
 
 ## License
 
