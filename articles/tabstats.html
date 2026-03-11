@@ -235,7 +235,7 @@ pass it.</p>
 </code></pre>
 <p>But, if the data you wanted to display is not a matrix, but on
 another form, you gotta have to configure it by building a custom spec
-with <code><a href="../reference/new_corr_spec.html">new_corr_spec()</a></code> for full control over which values
+with <code><a href="../reference/new_corr_data.html">new_corr_data()</a></code> for full control over which values
 appear.</p>
 <p>A wild example, assuming you want to display the output from
 <code><a href="https://rpkgs.datanovia.com/rstatix/reference/cor_test.html" class="external-link">rstatix::cor_test()</a></code>:</p>
@@ -262,7 +262,7 @@ appear.</p>
 <span><span class="va">cor_mat</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>        <span class="fu"><a href="../reference/corr_matrix.html">corr_matrix</a></span><span class="op">(</span></span>
-<span>            <span class="fu"><a href="../reference/new_corr_spec.html">new_corr_spec</a></span><span class="op">(</span></span>
+<span>            <span class="fu"><a href="../reference/new_corr_data.html">new_corr_data</a></span><span class="op">(</span></span>
 <span>                var1 <span class="op">=</span> <span class="va">var1</span>,</span>
 <span>                var2 <span class="op">=</span> <span class="va">var2</span>,</span>
 <span>                corr <span class="op">=</span> <span class="va">cor</span>,</span>
@@ -366,9 +366,9 @@ configure the style of the data displayed by the function. Use
 values.</p></li>
 <li><p><code><a href="../reference/corr_matrix.html">corr_matrix()</a></code> has a <code>style</code> parameter to
 configure the style of the values you entered, typically from the
-<code>display</code> argument using <code><a href="../reference/new_corr_spec.html">new_corr_spec()</a></code>. Use
+<code>display</code> argument using <code><a href="../reference/new_corr_data.html">new_corr_data()</a></code>. Use
 <code><a href="../reference/cm_style.html">cm_style()</a></code> to configure those values you assigned into
-<code><a href="../reference/new_corr_spec.html">new_corr_spec()</a></code> into the displayed table.</p></li>
+<code><a href="../reference/new_corr_data.html">new_corr_data()</a></code> into the displayed table.</p></li>
 </ol>
 <p>The quickest way to style output is with a named string:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -456,12 +456,12 @@ argument:</p>
 <p>More example: Imagine you want to apply for the p-value of the output
 from <code><a href="https://rpkgs.datanovia.com/rstatix/reference/cor_test.html" class="external-link">rstatix::cor_test()</a></code>, an earlier example. In
 <code><a href="../reference/corr_matrix.html">corr_matrix()</a></code>, you can even conditionally format the
-specified value from <code><a href="../reference/new_corr_spec.html">new_corr_spec()</a></code>.</p>
+specified value from <code><a href="../reference/new_corr_data.html">new_corr_data()</a></code>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cor_mat</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>        <span class="fu"><a href="../reference/corr_matrix.html">corr_matrix</a></span><span class="op">(</span></span>
-<span>            <span class="fu"><a href="../reference/new_corr_spec.html">new_corr_spec</a></span><span class="op">(</span></span>
+<span>            <span class="fu"><a href="../reference/new_corr_data.html">new_corr_data</a></span><span class="op">(</span></span>
 <span>                var1 <span class="op">=</span> <span class="va">var1</span>,</span>
 <span>                var2 <span class="op">=</span> <span class="va">var2</span>,</span>
 <span>                corr <span class="op">=</span> <span class="va">cor</span>,</span>

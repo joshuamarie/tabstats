@@ -152,7 +152,7 @@ corr_matrix(cor(mtcars[, 1:4]), method = "Pearson")
 
 But, if the data you wanted to display is not a matrix, but on another
 form, you gotta have to configure it by building a custom spec with
-[`new_corr_spec()`](https://joshuamarie.github.io/tabstats/reference/new_corr_spec.md)
+[`new_corr_data()`](https://joshuamarie.github.io/tabstats/reference/new_corr_data.md)
 for full control over which values appear.
 
 A wild example, assuming you want to display the output from
@@ -181,7 +181,7 @@ cor_mat =
 cor_mat |> 
     with({
         corr_matrix(
-            new_corr_spec(
+            new_corr_data(
                 var1 = var1,
                 var2 = var2,
                 corr = cor,
@@ -293,11 +293,11 @@ All table functions provides an API to style the table.
 4.  [`corr_matrix()`](https://joshuamarie.github.io/tabstats/reference/corr_matrix.md)
     has a `style` parameter to configure the style of the values you
     entered, typically from the `display` argument using
-    [`new_corr_spec()`](https://joshuamarie.github.io/tabstats/reference/new_corr_spec.md).
+    [`new_corr_data()`](https://joshuamarie.github.io/tabstats/reference/new_corr_data.md).
     Use
     [`cm_style()`](https://joshuamarie.github.io/tabstats/reference/cm_style.md)
     to configure those values you assigned into
-    [`new_corr_spec()`](https://joshuamarie.github.io/tabstats/reference/new_corr_spec.md)
+    [`new_corr_data()`](https://joshuamarie.github.io/tabstats/reference/new_corr_data.md)
     into the displayed table.
 
 The quickest way to style output is with a named string:
@@ -375,13 +375,13 @@ from
 an earlier example. In
 [`corr_matrix()`](https://joshuamarie.github.io/tabstats/reference/corr_matrix.md),
 you can even conditionally format the specified value from
-[`new_corr_spec()`](https://joshuamarie.github.io/tabstats/reference/new_corr_spec.md).
+[`new_corr_data()`](https://joshuamarie.github.io/tabstats/reference/new_corr_data.md).
 
 ``` r
 cor_mat |> 
     with({
         corr_matrix(
-            new_corr_spec(
+            new_corr_data(
                 var1 = var1,
                 var2 = var2,
                 corr = cor,

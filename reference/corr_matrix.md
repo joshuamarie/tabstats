@@ -24,7 +24,7 @@ corr_matrix(
 - display:
 
   A `corr_spec` object from
-  [`new_corr_spec()`](https://joshuamarie.github.io/tabstats/reference/new_corr_spec.md),
+  [`new_corr_data()`](https://joshuamarie.github.io/tabstats/reference/new_corr_data.md),
   or a plain symmetric matrix (e.g. from
   [`cor()`](https://rdrr.io/r/stats/cor.html)).
 
@@ -62,7 +62,7 @@ corr_matrix(
   A
   [`cm_style()`](https://joshuamarie.github.io/tabstats/reference/cm_style.md)
   object. Keys match the extra field names passed to
-  [`new_corr_spec()`](https://joshuamarie.github.io/tabstats/reference/new_corr_spec.md)
+  [`new_corr_data()`](https://joshuamarie.github.io/tabstats/reference/new_corr_data.md)
   (e.g. `rho`, `pval`, `bf`), plus `title` and `border_text`.
 
 - ...:
@@ -93,7 +93,7 @@ corr_matrix(cor(mtcars[, 1:4]), title = "Pearson Correlation Matrix")
 #> ────────────────────────────────────────────────
 
 # Customizable example
-spec = new_corr_spec(
+spec = new_corr_data(
     var1 = c("a", "a", "b"),
     var2 = c("b", "c", "c"),
     rho = c("0.89", "0.79", "0.66"),

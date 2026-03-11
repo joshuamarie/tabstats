@@ -15,7 +15,7 @@ cm_style(...)
 
   Named style entries. Names should match the extra field names passed
   to
-  [`new_corr_spec()`](https://joshuamarie.github.io/tabstats/reference/new_corr_spec.md)
+  [`new_corr_data()`](https://joshuamarie.github.io/tabstats/reference/new_corr_data.md)
   (e.g. `rho`, `pval`, `bf`), or the reserved keys `title` and
   `border_text`.
 

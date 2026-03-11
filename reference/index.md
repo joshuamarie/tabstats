@@ -37,7 +37,7 @@ SAS-like Correlation Matrix table
 
 - [`corr_matrix()`](https://joshuamarie.github.io/tabstats/reference/corr_matrix.md)
   : Display a Correlation Matrix Table in the Console
-- [`new_corr_spec()`](https://joshuamarie.github.io/tabstats/reference/new_corr_spec.md)
+- [`new_corr_data()`](https://joshuamarie.github.io/tabstats/reference/new_corr_data.md)
   : Build a correlation display specification
 - [`cm_style()`](https://joshuamarie.github.io/tabstats/reference/cm_style.md)
   : Style specification for corr_matrix()
