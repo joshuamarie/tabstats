@@ -17,12 +17,13 @@ td_style = function(...) {
     args = list(...)
     for (nm in names(args)) {
         val = args[[nm]]
-        if (!is.character(val) && !is.function(val))
-            stop(
-                sprintf("Style entry `%s` must be a string or a function.", nm),
-                call. = FALSE
+        if (!is.character(val) && !is.function(val)) {
+            cli::cli_abort(
+                "Style entry {.arg {nm}} must be a string or a function."
             )
+        }
     }
+
     vctrs::new_vctr(args, class = c("td_style", "tabstats_style"))
 }
 
@@ -44,7 +45,7 @@ td_style = function(...) {
 #' sm_style(left_col = \(x) cli::col_red(x), sep = "|")
 #'
 #' @export
-sm_style = function(left_col = NULL,right_col = NULL, border_text = NULL, title = NULL, sep = NULL) {
+sm_style = function(left_col = NULL, right_col = NULL, border_text = NULL, title = NULL, sep = NULL) {
     args = Filter(
         Negate(is.null),
         list(
@@ -140,35 +141,32 @@ cm_style = function(...) {
     args = list(...)
     for (nm in names(args)) {
         val = args[[nm]]
-        if (!is.character(val) && !is.function(val))
-            stop(
-                sprintf("Style entry `%s` must be a string or a function.", nm),
-                call. = FALSE
+        if (!is.character(val) && !is.function(val)) {
+            cli::cli_abort(
+                "Style entry {.arg {nm}} must be a string or a function."
             )
+        }
     }
+
     vctrs::new_vctr(args, class = c("cm_style", "tabstats_style"))
 }
 
 new_tabstats_style = function(style_list, valid_keys, class_name) {
     unknown = setdiff(names(style_list), valid_keys)
-    if (length(unknown) > 0)
-        stop(
-            sprintf(
-                "Unknown style key%s: %s\nValid keys are: %s",
-                if (length(unknown) > 1) "s" else "",
-                paste(unknown, collapse = ", "),
-                paste(valid_keys, collapse = ", ")
-            ),
-            call. = FALSE
-        )
+    if (length(unknown) > 0) {
+        cli::cli_abort(c(
+            "Unknown style {cli::qty(unknown)} key{?s}: {.arg {unknown}}.",
+            "i" = "Valid keys are: {.arg {valid_keys}}."
+        ))
+    }
 
     for (nm in names(style_list)) {
         val = style_list[[nm]]
-        if (!is.character(val) && !is.function(val))
-            stop(
-                sprintf("Style key `%s` must be a string or a function.", nm),
-                call. = FALSE
+        if (!is.character(val) && !is.function(val)) {
+            cli::cli_abort(
+                "Style key {.arg {nm}} must be a string or a function."
             )
+        }
     }
 
     vctrs::new_vctr(
@@ -178,18 +176,23 @@ new_tabstats_style = function(style_list, valid_keys, class_name) {
     )
 }
 
-
 #' @export
 format.tabstats_style = function(x, ...) {
     cls = setdiff(class(x), "tabstats_style")[1]
     header = sprintf("<tabstats_style / %s>", cls)
     if (length(x) == 0)
         return(c(header, "  (no keys set)"))
-    entries = vapply(names(x), function(nm) {
-        val = x[[nm]]
-        desc = if (is.function(val)) "<function>" else paste0('"', val, '"')
-        sprintf("  %s: %s", nm, desc)
-    }, character(1))
+
+    entries = vapply(
+        names(x),
+        function(nm) {
+            val = x[[nm]]
+            desc = if (is.function(val)) "<function>" else paste0('"', val, '"')
+            sprintf("  %s: %s", nm, desc)
+        },
+        character(1)
+    )
+
     c(header, entries)
 }
 

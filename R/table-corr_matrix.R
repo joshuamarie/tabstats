@@ -49,11 +49,11 @@ corr_matrix = function(
     # ---- Validate style ----
 
     if (!is.null(style) && !is.list(style))
-        cli::cli_abort("{.arg style} must be a list or a style object (e.g. {.fn sm_style}).")
+        cli::cli_abort("{.arg style} must be a list or a style object (e.g. {.fn cm_style}).")
 
-    if (inherits(style, "tabstats_style") && !inherits(style, "sm_style")) {
+    if (inherits(style, "tabstats_style") && !inherits(style, "cm_style")) {
         cli::cli_abort(
-            "{.arg style} must be an {.cls sm_style} object for {.fn table_summary}.",
+            "{.arg style} must be an {.cls cm_style} object for {.fn table_summary}.",
             "x" = "Got {.cls {class(style)[1]}}."
         )
     }

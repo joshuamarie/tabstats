@@ -34,11 +34,11 @@ cross_table = function(
 ) {
     # ---- Validate style ----
     if (!is.null(style) && !is.list(style))
-        cli::cli_abort("{.arg style} must be a list or a style object (e.g. {.fn sm_style}).")
+        cli::cli_abort("{.arg style} must be a list or a style object (e.g. {.fn ct_style}).")
 
-    if (inherits(style, "tabstats_style") && !inherits(style, "sm_style")) {
+    if (inherits(style, "tabstats_style") && !inherits(style, "ct_style")) {
         cli::cli_abort(
-            "{.arg style} must be an {.cls sm_style} object for {.fn table_summary}.",
+            "{.arg style} must be an {.cls ct_style} object for {.fn table_summary}.",
             "x" = "Got {.cls {class(style)[1]}}."
         )
     }
@@ -148,7 +148,7 @@ cross_table = function(
 }
 
 digits_resolver = function(digits) {
-    defaults = getOption("ct_digits")
+    defaults = getOption("tab_digits")
     if (is.null(digits)) return(defaults)
     if (is.numeric(digits) && length(digits) == 1)
         return(list(ex = digits, row_pct = digits, col_pct = digits, total_pct = digits))
