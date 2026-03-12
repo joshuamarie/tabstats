@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-A lightweight toolkit that provides functions for printing tables from input data in the R console or terminal. Supported outputs include APA-style tables, correlation matrices, contingency tables, and two-column summary tables.
+A lightweight toolkit that provides functions for printing tables from input data in the R console or terminal with customizable formatting. Supported outputs include APA-style tables, correlation matrices, contingency tables, and two-column summary tables.
 }
 \seealso{
 Useful links:
