@@ -76,7 +76,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Getting Started</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/joshuamarie/tabstats/blob/v0.1.0/vignettes/tabstats.Rmd" class="external-link"><code>vignettes/tabstats.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/joshuamarie/tabstats/blob/main/vignettes/tabstats.Rmd" class="external-link"><code>vignettes/tabstats.Rmd</code></a></small>
       <div class="d-none name"><code>tabstats.Rmd</code></div>
     </div>
 
@@ -99,12 +99,12 @@ workflows.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td><code><a href="../reference/table_summary.html">table_summary()</a></code></td>
-<td>Two-column key-value summary table</td>
-</tr>
-<tr class="even">
 <td><code><a href="../reference/table_default.html">table_default()</a></code></td>
 <td>General-purpose data frame table</td>
+</tr>
+<tr class="even">
+<td><code><a href="../reference/table_summary.html">table_summary()</a></code></td>
+<td>Two-column key-value summary table</td>
 </tr>
 <tr class="odd">
 <td><code><a href="../reference/corr_matrix.html">corr_matrix()</a></code></td>
@@ -184,9 +184,11 @@ an APA-style format, with configurable formatting.</p>
 <code>table_summary()</code><a class="anchor" aria-label="anchor" href="#table_summary"></a>
 </h3>
 <p>Another form of <code><a href="../reference/table_default.html">table_default()</a></code>, except it is best
-suitable for displaying summarized data, where the data frame has 2
-columns. The simplest use case is a named summary of values, like model
-diagnostics or descriptive statistics.</p>
+suitable for displaying summarized data, where it requires 2 columns
+data frame. The simplest use case is a named summary of values, like
+model diagnostics or descriptive statistics, where the 1st column is the
+name of the parameter (statistic) while the 2nd column is the
+estimate.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>    Statistic <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>, <span class="st">"Mean"</span>, <span class="st">"SD"</span>, <span class="st">"Min"</span>, <span class="st">"Max"</span><span class="op">)</span>,</span>
@@ -211,16 +213,17 @@ Descriptive Statistics
 ----------------------
 </code></pre>
 <p><em>The <code>header</code> means you still wanted to display the
-column names from the original <code>df</code> data frame. </em></p>
+column names from the original <code>df</code> data frame, otherwise, no
+column names are present. </em></p>
 </div>
 <div class="section level3">
-<h3 id="corr_matrix-correlation-matrices">
-<code>corr_matrix()</code> — correlation matrices<a class="anchor" aria-label="anchor" href="#corr_matrix-correlation-matrices"></a>
+<h3 id="corr_matrix">
+<code>corr_matrix()</code><a class="anchor" aria-label="anchor" href="#corr_matrix"></a>
 </h3>
-<p>A much complex function to display the matrix, but specifically for
-correlation matrices. If the <code>display</code> is a correlation
-matrix, typically the output of <code><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor()</a></code>, you can directly
-pass it.</p>
+<p>A much complex but niche function to display the matrix, specifically
+designed for correlation matrices. If the <code>display</code> is a
+correlation matrix, typically the output of <code><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor()</a></code>, you can
+directly pass it.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/corr_matrix.html">corr_matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"Pearson"</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code>
@@ -238,9 +241,9 @@ pass it.</p>
 ────────────────────────────────────────────────
 </code></pre>
 <p>But, if the data you wanted to display is not a matrix, but on
-another form, you gotta have to configure it by building a custom spec
-with <code><a href="../reference/new_corr_data.html">new_corr_data()</a></code> for full control over which values
-appear.</p>
+another form, you’re going to have to configure it by building a custom
+spec with <code><a href="../reference/new_corr_data.html">new_corr_data()</a></code> for full control over which
+values to appear.</p>
 <p>A wild example, assuming you want to display the output from
 <code><a href="https://rpkgs.datanovia.com/rstatix/reference/cor_test.html" class="external-link">rstatix::cor_test()</a></code>:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -427,6 +430,10 @@ argument:</p>
 </code></pre>
 <p>Supported named style strings:</p>
 <table class="table">
+<colgroup>
+<col width="53%">
+<col width="46%">
+</colgroup>
 <thead><tr class="header">
 <th>String</th>
 <th>Effect</th>

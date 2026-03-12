@@ -13,8 +13,8 @@ The package provides four main functions:
 
 | Function                                                                               | Purpose                                    |
 |----------------------------------------------------------------------------------------|--------------------------------------------|
-| [`table_summary()`](https://joshuamarie.github.io/tabstats/reference/table_summary.md) | Two-column key-value summary table         |
 | [`table_default()`](https://joshuamarie.github.io/tabstats/reference/table_default.md) | General-purpose data frame table           |
+| [`table_summary()`](https://joshuamarie.github.io/tabstats/reference/table_summary.md) | Two-column key-value summary table         |
 | [`corr_matrix()`](https://joshuamarie.github.io/tabstats/reference/corr_matrix.md)     | Correlation matrix display                 |
 | [`cross_table()`](https://joshuamarie.github.io/tabstats/reference/cross_table.md)     | Cross tabulation with optional percentages |
 
@@ -91,9 +91,11 @@ table_default(head(mtcars[, 1:5], 5))
 
 Another form of
 [`table_default()`](https://joshuamarie.github.io/tabstats/reference/table_default.md),
-except it is best suitable for displaying summarized data, where the
-data frame has 2 columns. The simplest use case is a named summary of
-values, like model diagnostics or descriptive statistics.
+except it is best suitable for displaying summarized data, where it
+requires 2 columns data frame. The simplest use case is a named summary
+of values, like model diagnostics or descriptive statistics, where the
+1st column is the name of the parameter (statistic) while the 2nd column
+is the estimate.
 
 ``` r
 df = data.frame(
@@ -122,14 +124,14 @@ Descriptive Statistics
 ```
 
 *The `header` means you still wanted to display the column names from
-the original `df` data frame.*
+the original `df` data frame, otherwise, no column names are present.*
 
-### `corr_matrix()` — correlation matrices
+### `corr_matrix()`
 
-A much complex function to display the matrix, but specifically for
-correlation matrices. If the `display` is a correlation matrix,
-typically the output of [`cor()`](https://rdrr.io/r/stats/cor.html), you
-can directly pass it.
+A much complex but niche function to display the matrix, specifically
+designed for correlation matrices. If the `display` is a correlation
+matrix, typically the output of
+[`cor()`](https://rdrr.io/r/stats/cor.html), you can directly pass it.
 
 ``` r
 corr_matrix(cor(mtcars[, 1:4]), method = "Pearson")
@@ -151,9 +153,10 @@ corr_matrix(cor(mtcars[, 1:4]), method = "Pearson")
 ```
 
 But, if the data you wanted to display is not a matrix, but on another
-form, you gotta have to configure it by building a custom spec with
+form, you’re going to have to configure it by building a custom spec
+with
 [`new_corr_data()`](https://joshuamarie.github.io/tabstats/reference/new_corr_data.md)
-for full control over which values appear.
+for full control over which values to appear.
 
 A wild example, assuming you want to display the output from
 [`rstatix::cor_test()`](https://rpkgs.datanovia.com/rstatix/reference/cor_test.html):

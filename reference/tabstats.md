@@ -1,9 +1,9 @@
-# tabstats: Helpers for Displaying Tables
+# tabstats: A Lightweight Toolkit for Displaying Customizable Tables
 
-A lightweight package that consists the collection of functions to print
-the data in a table format within command line. This includes a default
-table, contingency table, correlation matrix, and a summary table in 2
-columns form.
+A lightweight toolkit that provides functions for printing tables from
+input data in the R console or terminal. Supported outputs include
+APA-style tables, correlation matrices, contingency tables, and
+two-column summary tables.
 
 ## See also
 
