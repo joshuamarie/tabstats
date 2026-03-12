@@ -1,4 +1,4 @@
-meta = as.list(read.dcf("DESCRIPTION")[1, ])
+# meta = as.list(read.dcf("DESCRIPTION")[1, ])
 
 bibentry(
     bibtype = "Manual",
