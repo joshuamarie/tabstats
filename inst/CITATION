@@ -1,8 +1,8 @@
-meta = packageDescription("tabstats")
+meta = as.list(read.dcf("DESCRIPTION")[1, ])
 
 bibentry(
     bibtype = "Manual",
-    title = paste0("{", meta$Package, "}", ": ", meta$Title),
+    title = paste0("{", meta$Package, "}: ", meta$Title),
     author = person("Joshua", "Marie"),
     year = "2026",
     note = paste("R package version", meta$Version)
