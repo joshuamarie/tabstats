@@ -7,16 +7,13 @@ status](https://www.r-pkg.org/badges/version/tabstats)](https://CRAN.R-project.o
 
 ## Package overview
 
-Title: ***Helpers for Displaying Tables***
+Title: ***A Lightweight Toolkit for Displaying Customizable Tables***
 
-***tabstats*** is a lightweight package in action that assists you to
-print out the data you want to display as a table, with more
-enchantments that customizes table with styles and alignment. This is
-especially useful in displaying statistical results in R console/command
-line as a table.
-
-> The package is currently **under construction** and not yet available
-> on CRAN.
+***tabstats*** is a lightweight package in action, ideal for
+development, that allows end users to print out the data they want to
+present as a table in the command line, with further enhancements that
+modify the table with styles and alignment. This is very useful when
+displaying statistical results on the R console/command line as a table.
 
 ## Installation
 

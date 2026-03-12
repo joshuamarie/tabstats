@@ -50,12 +50,12 @@ library(tabstats)
 
 The package provides four main functions:
 
-| Function | Purpose |
-|---|---|
-| `table_summary()` | Two-column key-value summary table |
-| `table_default()` | General-purpose data frame table |
-| `corr_matrix()` | Correlation matrix display |
-| `cross_table()` | Cross tabulation with optional percentages |
+| Function          | Purpose                                    |
+|-------------------|--------------------------------------------|
+| `table_default()` | General-purpose data frame table           | 
+| `table_summary()` | Two-column key-value summary table         |
+| `corr_matrix()`   | Correlation matrix display                 |
+| `cross_table()`   | Cross tabulation with optional percentages |
 
 All functions share a common design philosophy:
 
@@ -99,7 +99,7 @@ table_default(head(mtcars[, 1:5], 5))
 
 ### `table_summary()`
 
-Another form of `table_default()`, except it is best suitable for displaying summarized data, where the data frame has 2 columns. The simplest use case is a named summary of values, like model diagnostics or descriptive statistics.
+Another form of `table_default()`, except it is best suitable for displaying summarized data, where it requires 2 columns data frame. The simplest use case is a named summary of values, like model diagnostics or descriptive statistics, where the 1st column is the name of the parameter (statistic) while the 2nd column is the estimate.
 
 ```{r}
 df = data.frame(
@@ -114,17 +114,17 @@ table_summary(
 )
 ```
 
-*The `header` means you still wanted to display the column names from the original `df` data frame. *
+*The `header` means you still wanted to display the column names from the original `df` data frame, otherwise, no column names are present. *
 
-### `corr_matrix()` — correlation matrices
+### `corr_matrix()`
 
-A much complex function to display the matrix, but specifically for correlation matrices. If the `display` is a correlation matrix, typically the output of `cor()`, you can directly pass it. 
+A much complex but niche function to display the matrix, specifically designed for correlation matrices. If the `display` is a correlation matrix, typically the output of `cor()`, you can directly pass it. 
 
 ```{r}
 corr_matrix(cor(mtcars[, 1:4]), method = "Pearson")
 ```
 
-But, if the data you wanted to display is not a matrix, but on another form, you gotta have to configure it by building a custom spec with `new_corr_data()` for full control over which values appear.
+But, if the data you wanted to display is not a matrix, but on another form, you're going to have to configure it by building a custom spec with `new_corr_data()` for full control over which values to appear.
 
 A wild example, assuming you want to display the output from `rstatix::cor_test()`: 
 
@@ -227,13 +227,13 @@ table_summary(
 
 Supported named style strings:
 
-| String | Effect |
-|---|---|
-| `"bold"` | Bold text |
-| `"italic"` | Italic text |
-| `"blue"`, `"red"`, `"green"`, `"yellow"` | Foreground colour |
-| `"blue_bold"` | Colour + bold (combinable with `_`) |
-| `"red_italic"` | Colour + italic |
+| String                                   | Effect                              |
+|------------------------------------------|-------------------------------------|
+| `"bold"`                                 | Bold text                           |
+| `"italic"`                               | Italic text                         |
+| `"blue"`, `"red"`, `"green"`, `"yellow"` | Foreground colour                   |
+| `"blue_bold"`                            | Colour + bold (combinable with `_`) |
+| `"red_italic"`                           | Colour + italic                     |
 
 More example: Imagine you want to apply for the p-value of the output from `rstatix::cor_test()`, an earlier example. In `corr_matrix()`, you can even conditionally format the specified value from `new_corr_data()`. 
 

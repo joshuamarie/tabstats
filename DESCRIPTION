@@ -1,6 +1,6 @@
 Package: tabstats
 Type: Package
-Title: Helpers for Displaying Tables
+Title: A Lightweight Toolkit for Displaying Customizable Tables
 Version: 0.1.0
 Authors@R: c(
     person(
@@ -10,9 +10,10 @@ Authors@R: c(
     )
     )
 Maintainer: Joshua Marie <joshua.marie.k@gmail.com>
-Description: A lightweight package that consists the collection of functions to print 
-    the data in a table format within command line. This includes a default table, 
-    contingency table, correlation matrix, and a summary table in 2 columns form.
+Description: A lightweight toolkit that provides functions for printing tables from
+    input data in the R console or terminal. Supported outputs include
+    APA-style tables, correlation matrices, contingency tables, and
+    two-column summary tables.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
