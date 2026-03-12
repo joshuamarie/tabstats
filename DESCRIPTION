@@ -11,8 +11,8 @@ Authors@R: c(
     )
 Maintainer: Joshua Marie <joshua.marie.k@gmail.com>
 Description: A lightweight toolkit that provides functions for printing tables from
-    input data in the R console or terminal with customizable formatting. 
-    Supported outputs include APA-style tables, correlation matrices, contingency tables, 
+    input data in the R console or terminal with customizable formatting. Supported 
+    outputs include APA-style tables, correlation matrices, contingency tables, 
     and two-column summary tables.
 License: MIT + file LICENSE
 Encoding: UTF-8
