@@ -121,6 +121,13 @@ table_default(
 
   Reserved for future use.
 
+## Value
+
+Invisibly returns the input data as a character matrix after formatting
+has been applied. The function is called primarily for its side effect
+of printing a styled table to the R console. Returns `invisible(NULL)`
+early if the input has 0 rows and 0 columns, or if it has 0 columns.
+
 ## Examples
 
 ``` r
