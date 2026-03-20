@@ -76,6 +76,13 @@ index as a string, and each value is a cli style string or a function
 
 \item{...}{Reserved for future use.}
 }
+\value{
+Invisibly returns the input data as a character matrix after
+formatting has been applied. The function is called primarily for
+its side effect of printing a styled table to the R console.
+Returns \code{invisible(NULL)} early if the input has 0 rows and 0 columns,
+or if it has 0 columns.
+}
 \description{
 Display a formatted table in the console
 }

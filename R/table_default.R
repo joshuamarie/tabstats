@@ -31,6 +31,12 @@
 #' @param wrap_threshold Fraction of console width before wrapping. Default `1`.
 #' @param ... Reserved for future use.
 #'
+#' @return Invisibly returns the input data as a character matrix after
+#'   formatting has been applied. The function is called primarily for
+#'   its side effect of printing a styled table to the R console.
+#'   Returns `invisible(NULL)` early if the input has 0 rows and 0 columns,
+#'   or if it has 0 columns.
+#'
 #' @examples
 #' table_default(head(mtcars))
 #' table_default(head(mtcars), style_columns = td_style(mpg = "cyan", cyl = "magenta"))
