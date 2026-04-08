@@ -226,7 +226,7 @@ row_display = function(x_chars, col_names, col_widths, justify_cols, n_space,
     }
 }
 
-.print_table = function(
+default_table_print = function(
         x_chars, col_names, col_widths, vb_setup,
         justify_cols, n_space, title,
         style_colnames, style_columns, original_x,
@@ -245,7 +245,7 @@ row_display = function(x_chars, col_names, col_widths, justify_cols, n_space,
     cat(pad, lines$bot, "\n", sep = "")
 }
 
-.print_wrapped = function(
+wrapped_table_print = function(
         x_chars, col_names, col_widths, vb_setup,
         justify_cols, n_space, title,
         style_colnames, style_columns, original_x,

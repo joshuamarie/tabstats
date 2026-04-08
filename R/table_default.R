@@ -149,14 +149,14 @@ table_default = function(
         cli::cli_alert_info("Showing {nrows} of {original_nrow} rows")
 
     if (should_wrap) {
-        .print_wrapped(
+        wrapped_table_print(
             x_chars, col_names, col_widths, vb_setup,
             justify_cols, n_space, title,
             style_colnames, style_columns, original_x,
             center_table, term_width, border_char, wrap_threshold
         )
     } else {
-        .print_table(
+        default_table_print(
             x_chars, col_names, col_widths, vb_setup,
             justify_cols, n_space, title,
             style_colnames, style_columns, original_x,
