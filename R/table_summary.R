@@ -136,18 +136,24 @@ table_summary =
         if (header) {
             header_row = if (w$is_split) {
                 paste0(
-                    format_row_summary(col_names[1], col_names[2],
-                                       w$left_left_width, w$left_right_width,
-                                       style = NULL),
+                    format_row_summary(
+                        col_names[1], col_names[2],
+                        w$left_left_width, w$left_right_width,
+                        style = NULL
+                    ),
                     "  ",
-                    format_row_summary(col_names[1], col_names[2],
-                                       w$right_left_width, w$right_right_width,
-                                       style = NULL)
+                    format_row_summary(
+                        col_names[1], col_names[2],
+                        w$right_left_width, w$right_right_width,
+                        style = NULL
+                    )
                 )
             } else {
-                format_row_summary(col_names[1], col_names[2],
-                                   w$left_width, w$right_width,
-                                   style = NULL)
+                format_row_summary(
+                    col_names[1], col_names[2],
+                    w$left_width, w$right_width,
+                    style = NULL
+                )
             }
             cat(prefix, header_row, "\n", sep = "")
             cat(prefix, styled_h_line, "\n", sep = "")
@@ -158,9 +164,12 @@ table_summary =
             for (i in seq_len(nrow(data_matrix))) {
                 cat(
                     prefix,
-                    format_row_summary(data_matrix[i, 1], data_matrix[i, 2],
-                                       w$left_width, w$right_width,
-                                       align = align, style = style),
+                    format_row_summary(
+                        data_matrix[i, 1], data_matrix[i, 2],
+                        w$left_width, w$right_width,
+                        align = align,
+                        style = style
+                    ),
                     "\n",
                     sep = ""
                 )
@@ -174,13 +183,19 @@ table_summary =
                 cat(
                     prefix,
                     paste0(
-                        format_row_summary(lr[1], lr[2],
-                                           w$left_left_width, w$left_right_width,
-                                           align = align, style = style),
+                        format_row_summary(
+                            lr[1], lr[2],
+                            w$left_left_width, w$left_right_width,
+                            align = align,
+                            style = style
+                        ),
                         "  ",
-                        format_row_summary(rr[1], rr[2],
-                                           w$right_left_width, w$right_right_width,
-                                           align = align, style = style)
+                        format_row_summary(
+                            rr[1], rr[2],
+                            w$right_left_width, w$right_right_width,
+                            align = align,
+                            style = style
+                        )
                     ),
                     "\n",
                     sep = ""
