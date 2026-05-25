@@ -14,7 +14,7 @@ spec_multi = new_corr_data(
 # ---- Input validation ----
 
 test_that("errors on non-matrix, non-corr_spec input", {
-    expect_error(corr_matrix(list(a = 1)), "corr_spec.*symmetric matrix")
+    expect_error(corr_matrix(list(a = 1)), "pairwise_spec.*symmetric matrix")
 })
 
 test_that("errors on non-symmetric matrix", {
@@ -94,33 +94,33 @@ test_that("cm_style() rejects non-string, non-function values", {
     expect_error(cm_style(rho = 123), "must be a string or a function")
 })
 
-# ---- style_resolver_cm() -----------------------------------------------------
+# ---- style_resolver_pm() -----------------------------------------------------
 
 test_that("fills missing keys with identity functions", {
-    style = style_resolver_cm(list(), c("rho", "pval"))
+    style = style_resolver_pm(list(), c("rho", "pval"))
     expect_true(is.function(style[["rho"]]))
     expect_true(is.function(style[["title"]]))
     expect_true(is.function(style[["border_text"]]))
 })
 
 test_that("converts string style to a function", {
-    style = style_resolver_cm(list(rho = "blue"), c("rho"))
+    style = style_resolver_pm(list(rho = "blue"), c("rho"))
     expect_type(style[["rho"]], "closure")
 })
 
-# ---- style_fn_cm() -------
+# ---- style_fn_pm() -------
 
 test_that("converts known style string to a function", {
-    fn = style_fn_cm("red")
+    fn = style_fn_pm("red")
     expect_type(fn, "closure")
 })
 
 test_that("warns on unknown style string component", {
-    expect_warning(style_fn_cm("notacolor"), "Unknown style")
+    expect_warning(style_fn_pm("notacolor"), "Unknown style")
 })
 
 test_that("combined style string (e.g. blue_bold) returns a function", {
-    fn = style_fn_cm("blue_bold")
+    fn = style_fn_pm("blue_bold")
     expect_type(fn, "closure")
 })
 
