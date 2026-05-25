@@ -65,12 +65,14 @@ reference:
     - cross_table
     - ct_style
 
-  - subtitle: Correlation Matrix Table
-    desc: SAS-like Correlation Matrix table
+  - subtitle: Pairwise Matrix Table
+    desc: SAS-like pairwise matrix table; use for correlation matrices and beyond
     contents:
+    - pairwise_matrix
+    - new_pairwise_data
+    - cm_style
     - corr_matrix
     - new_corr_data
-    - cm_style
 
   - title: Package Options
     desc: Simple function to tweak options in the package
