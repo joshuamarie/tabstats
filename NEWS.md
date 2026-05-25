@@ -1,6 +1,6 @@
 # tabstats (development version)
 
-<!-- # tabstats 0.2.0 -->
+# tabstats 0.2.0
 
 -   Added `pairwise_matrix()` and `new_pairwise_data()` as generalized
     equivalents of `corr_matrix()` and `new_corr_data()`. The new functions
