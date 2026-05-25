@@ -1,6 +1,6 @@
-#' Build a correlation display specification
+#' Build a pairwise matrix display specification
 #'
-#' Constructs a structured spec object consumed by `corr_matrix()`. Always
+#' Constructs a structured spec object consumed by `pairwise_matrix()`. Always
 #' requires `var1` and `var2` — the pair pattern they encode determines which
 #' triangle(s) of the matrix are filled:
 #'
@@ -21,10 +21,10 @@
 #' @param ... Named character vectors of equal length to `var1`/`var2`.
 #'   Each becomes one display row inside the cell (e.g. `rho`, `pval`, `bf`).
 #'
-#' @return An object of class `corr_spec`.
+#' @return An object of class `pairwise_spec`.
 #'
 #' @examples
-#' new_corr_data(
+#' new_pairwise_data(
 #'     var1 = c("a", "a", "b"),
 #'     var2 = c("b", "c", "c"),
 #'     rho = c("0.89", "0.79", "0.66"),
@@ -32,7 +32,7 @@
 #' )
 #'
 #' @export
-new_corr_data = function(var1, var2, ...) {
+new_pairwise_data = function(var1, var2, ...) {
     stopifnot(is.character(var1), is.character(var2))
 
     n_pairs = length(var1)
@@ -59,8 +59,16 @@ new_corr_data = function(var1, var2, ...) {
             pattern = pattern,
             vars = vars
         ),
-        class = "corr_spec"
+        class = "pairwise_spec"
     )
+}
+
+#' @rdname new_pairwise_data
+#' @export
+new_corr_data = function(var1, var2, ...) {
+    spec = new_pairwise_data(var1, var2, ...)
+    class(spec) = c("corr_spec", "pairwise_spec")
+    spec
 }
 
 detect_pattern = function(var1, var2, n_pairs) {
@@ -84,12 +92,12 @@ detect_pattern = function(var1, var2, n_pairs) {
     has_eq = any(var1 == var2)
 
     if (!has_lt && !has_gt &&  has_eq && n_pairs == expected$all) "full"
-    else if ( has_lt &&  has_gt &&  has_eq && n_pairs == expected$all) "full"
-    else if ( has_lt &&  has_gt && !has_eq && n_pairs == expected$neq) "neq"
-    else if ( has_lt && !has_gt && !has_eq && n_pairs == expected$lt)  "lt"
-    else if ( has_lt && !has_gt &&  has_eq && n_pairs == expected$lte) "lte"
-    else if (!has_lt &&  has_gt && !has_eq && n_pairs == expected$gt)  "gt"
-    else if (!has_lt &&  has_gt &&  has_eq && n_pairs == expected$gte) "gte"
+    else if ( has_lt && has_gt && has_eq && n_pairs == expected$all) "full"
+    else if ( has_lt && has_gt && !has_eq && n_pairs == expected$neq) "neq"
+    else if ( has_lt && !has_gt && !has_eq && n_pairs == expected$lt) "lt"
+    else if ( has_lt && !has_gt && has_eq && n_pairs == expected$lte) "lte"
+    else if (!has_lt && has_gt && !has_eq && n_pairs == expected$gt) "gt"
+    else if (!has_lt && has_gt && has_eq && n_pairs == expected$gte) "gte"
     else stop(
         sprintf(
             "Vector length (%d) does not match any valid pattern for %d variable(s).\n",

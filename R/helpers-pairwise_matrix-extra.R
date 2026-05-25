@@ -1,20 +1,20 @@
-matrix_spec_resolver_cm = function(m, digits) {
+matrix_spec_resolver_pm = function(m, digits, name) {
     if (!isSymmetric(unname(m)))
         stop("Matrix must be symmetric.", call. = FALSE)
 
     new_m = as.table(m) |>
         as.data.frame()
 
-    spec = new_corr_data(
+    spec = new_pairwise_data(
         var1 = vctrs::vec_cast(new_m[[1]], character()),
         var2 = vctrs::vec_cast(new_m[[2]], character()),
         corr = format(new_m[[3]], digits = digits)
     )
-    attr(spec, "title") = "Correlation Matrix"
+    attr(spec, "title") = name
     spec
 }
 
-style_resolver_cm = function(style, extra_names) {
+style_resolver_pm = function(style, extra_names) {
     identity_fn = function(x) x
     all_keys = unique(c(extra_names, "title", "border_text"))
     defaults = stats::setNames(rep(list(identity_fn), length(all_keys)), all_keys)
@@ -22,12 +22,12 @@ style_resolver_cm = function(style, extra_names) {
 
     for (nm in names(resolved))
         if (is.character(resolved[[nm]]))
-            resolved[[nm]] = style_fn_cm(resolved[[nm]])
+            resolved[[nm]] = style_fn_pm(resolved[[nm]])
 
     resolved
 }
 
-style_fn_cm = function(style_string) {
+style_fn_pm = function(style_string) {
     style_map = list(
         red = cli::col_red, blue = cli::col_blue, green = cli::col_green,
         yellow = cli::col_yellow, magenta = cli::col_magenta, cyan = cli::col_cyan,
@@ -43,7 +43,7 @@ style_fn_cm = function(style_string) {
     Reduce(function(f, g) function(x) f(g(x)), fns, right = TRUE)
 }
 
-matrix_styler_cm = function(mat, field_names, style) {
+matrix_styler_pm = function(mat, field_names, style) {
     n_fields = length(field_names)
     styled = mat
 
@@ -60,22 +60,24 @@ matrix_styler_cm = function(mat, field_names, style) {
     styled
 }
 
-left_pad_cm = function(center_table, total_width) {
+left_pad_pm = function(center_table, total_width) {
     if (!center_table) return("")
     term_w = tryCatch(cli::console_width(), error = function(e) as.integer(getOption("width")))
     strrep(" ", max(0L, floor((term_w - total_width) / 2L)))
 }
 
-print_layout_cm = function(field_names, style, border_char, layout_center, center_table) {
+print_layout_pm = function(field_names, style, border_char, layout_center, center_table, name) {
     w = 29L
     top = paste0("\u250C", strrep("\u2500", w - 2L), "\u2510")
     mid = paste0("\u251C", strrep("\u2500", w - 2L), "\u2524")
     bot = paste0("\u2514", strrep(border_char, w - 2L), "\u2518")
     inner = function(txt) paste0("| ", align_center(txt, w - 4L), " |")
 
+    short_name = if (nchar(name) > w - 14L) paste0(substr(name, 1L, w - 17L), "...") else name
+
     box = c(
         top,
-        inner(style[["title"]]("Layout for Corr. Matrix")),
+        inner(style[["title"]](paste0("Layout for ", short_name))),
         mid
     )
     for (nm in field_names) {
@@ -88,7 +90,7 @@ print_layout_cm = function(field_names, style, border_char, layout_center, cente
         if (is.null(styled_label)) {
             probe = tryCatch(style[[nm]]("0.001"), error = function(e) NULL)
             styled_label = if (!is.null(probe)) {
-                pre  = regmatches(probe, regexpr("^(\033\\[[0-9;]*m)+", probe))
+                pre = regmatches(probe, regexpr("^(\033\\[[0-9;]*m)+", probe))
                 post = regmatches(probe, regexpr("(\033\\[[0-9;]*m)+$", probe))
                 if (length(pre) && length(post)) paste0(pre, label, post) else label
             } else {

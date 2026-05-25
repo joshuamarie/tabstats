@@ -1,39 +1,42 @@
-#' Display a Correlation Matrix Table in the Console
+#' Display a Pairwise Matrix Table in the Console
 #'
-#' @param display A `corr_spec` object from `new_corr_data()`, or a plain
-#'   symmetric matrix (e.g. from `cor()`).
-#' @param title Label shown in the title (e.g. `"Pearson Correlation Matrix"`).
-#'   Auto-detected from a `title` attribute on the spec if present.
+#' @param display A `pairwise_spec` object from `new_pairwise_data()`, or a
+#'   plain symmetric matrix (e.g. from `cor()`).
+#' @param title Label shown above the table. Auto-detected from a `title`
+#'   attribute on the spec if present; falls back to `name`.
+#' @param name Short name used in the layout legend box header. Default
+#'   `"Pairwise Matrix"`.
 #' @param diag_1 If `TRUE`, diagonal cells always show `"1"`. Default `TRUE`.
 #' @param digits Decimal places for numeric formatting. Default `3`.
 #' @param layout_view Show a layout legend box above the table? Default `FALSE`.
 #' @param layout_center Center the layout box in the terminal? Default `FALSE`.
 #' @param center_table Center table in terminal? Default `FALSE`.
 #' @param border_char Border character. Default from `getOption("tab_default")`.
-#' @param style A `cm_style()` object. Keys match the extra field names passed
-#'   to `new_corr_data()` (e.g. `rho`, `pval`, `bf`), plus `title` and
+#' @param style A style list. Keys match the extra field names passed to
+#'   `new_pairwise_data()` (e.g. `rho`, `pval`, `bf`), plus `title` and
 #'   `border_text`.
 #' @param ... Reserved for future use.
 #'
 #' @return Invisibly returns the rendered character matrix.
 #'
 #' @examples
-#' # From a plain correlation matrix, e.g. using `cor()`
-#' corr_matrix(cor(mtcars[, 1:4]), title = "Pearson Correlation Matrix")
+#' # From a plain correlation matrix
+#' pairwise_matrix(cor(mtcars[, 1:4]), title = "Pearson Correlation Matrix")
 #'
 #' # Customizable example
-#' spec = new_corr_data(
+#' spec = new_pairwise_data(
 #'     var1 = c("a", "a", "b"),
 #'     var2 = c("b", "c", "c"),
 #'     rho = c("0.89", "0.79", "0.66"),
 #'     pval = c("<0.001", "<0.001", "<0.001")
 #' )
-#' corr_matrix(spec, title = "Pearson Correlation Matrix", layout_view = TRUE)
+#' pairwise_matrix(spec, title = "Pearson Correlation Matrix", layout_view = TRUE)
 #'
 #' @export
-corr_matrix = function(
+pairwise_matrix = function(
         display,
         title = NULL,
+        name = "Pairwise Matrix",
         diag_1 = TRUE,
         digits = 3,
         layout_view = FALSE,
@@ -49,42 +52,42 @@ corr_matrix = function(
     # ---- Validate style ----
 
     if (!is.null(style) && !is.list(style))
-        cli::cli_abort("{.arg style} must be a list or a style object (e.g. {.fn cm_style}).")
+        cli::cli_abort("{.arg style} must be a list or a style object.")
 
     if (inherits(style, "tabstats_style") && !inherits(style, "cm_style")) {
         cli::cli_abort(
-            "{.arg style} must be an {.cls cm_style} object for {.fn table_summary}.",
+            "{.arg style} must be a {.cls cm_style} object for {.fn pairwise_matrix}.",
             "x" = "Got {.cls {class(style)[1]}}."
         )
     }
 
-    # ---- Coerce input --------------------------------------------------------
+    # ---- Coerce input ----
     spec = if (is.matrix(display)) {
-        matrix_spec_resolver_cm(display, digits)
-    } else if (inherits(display, "corr_spec")) {
+        matrix_spec_resolver_pm(display, digits, name)
+    } else if (inherits(display, "pairwise_spec")) {
         display
     } else {
-        stop("`display` must be a `corr_spec` object or a symmetric matrix.", call. = FALSE)
+        stop("`display` must be a `pairwise_spec` object or a symmetric matrix.", call. = FALSE)
     }
 
     title = if (is.null(title)) {
         t = attr(spec, "title")
-        if (is.null(t)) "Correlation Matrix" else t
+        if (is.null(t)) name else t
     } else {
         title
     }
 
-    style = style_resolver_cm(style, names(spec$extras))
+    style = style_resolver_pm(style, names(spec$extras))
 
     field_names = names(spec$extras)
     if (length(field_names) == 0) field_names = "corr"
     n_fields = length(field_names)
 
-    # ---- Layout view ---------------------------------------------------------
+    # ---- Layout view ----
     if (layout_view)
-        print_layout_cm(field_names, style, border_char, layout_center, center_table)
+        print_layout_pm(field_names, style, border_char, layout_center, center_table, name)
 
-    # ---- Build render matrix -------------------------------------------------
+    # ---- Build render matrix ----
     vars = spec$vars
     n = length(vars)
 
@@ -126,7 +129,7 @@ corr_matrix = function(
             mat[row_base + k - 1L, ci + 1L] = spec$extras[[k]][p]
     }
 
-    # ---- Column widths -------------------------------------------------------
+    # ---- Column widths ----
     col_names = c("Variable", vars)
     strip = function(x) nchar(gsub("\033\\[[0-9;]*m", "", x))
 
@@ -143,22 +146,59 @@ corr_matrix = function(
 
     total_width = sum(col_widths) + 3L * (length(col_widths) - 1L) + 4L
     hline = style[["border_text"]](strrep(border_char, total_width))
-    prefix = left_pad_cm(center_table, total_width)
+    prefix = left_pad_pm(center_table, total_width)
 
-    # ---- Apply styles --------------------------------------------------------
-    styled = matrix_styler_cm(mat, field_names, style)
+    # ---- Apply styles ----
+    styled = matrix_styler_pm(mat, field_names, style)
 
-    # ---- Print ---------------------------------------------------------------
+    # ---- Print ----
     cat("\n", prefix, style[["title"]](align_center(title, total_width)), "\n", sep = "")
     cat(prefix, hline, "\n", sep = "")
-    cat(prefix, format_row_cm(col_names, col_widths, left_align_first = TRUE), "\n", sep = "")
+    cat(prefix, format_row_pm(col_names, col_widths, left_align_first = TRUE), "\n", sep = "")
     cat(prefix, hline, "\n", sep = "")
 
     for (i in seq_len(nrow(mat))) {
-        cat(prefix, format_row_cm(styled[i, ], col_widths, left_align_first = TRUE), "\n", sep = "")
+        cat(prefix, format_row_pm(styled[i, ], col_widths, left_align_first = TRUE), "\n", sep = "")
         if (i %% n_fields == 0L)
             cat(prefix, hline, "\n", sep = "")
     }
 
     invisible(mat)
+}
+
+#' @rdname pairwise_matrix
+#' @export
+corr_matrix = function(
+        display,
+        title = NULL,
+        diag_1 = TRUE,
+        digits = 3,
+        layout_view = FALSE,
+        layout_center = FALSE,
+        center_table = FALSE,
+        border_char = getOption("tab_default")$border_char,
+        style = list(),
+        ...
+) {
+    if (inherits(display, "corr_spec") && !inherits(display, "pairwise_spec"))
+        class(display) = c("corr_spec", "pairwise_spec")
+
+    if (is.null(title)) {
+        t = attr(display, "title")
+        title = if (is.null(t)) "Correlation Matrix" else t
+    }
+
+    pairwise_matrix(
+        display = display,
+        title = title,
+        name = "Corr. Matrix",
+        diag_1 = diag_1,
+        digits = digits,
+        layout_view = layout_view,
+        layout_center = layout_center,
+        center_table = center_table,
+        border_char = border_char,
+        style = style,
+        ...
+    )
 }

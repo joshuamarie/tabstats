@@ -7,11 +7,11 @@ align_center = function(text, width, pos = FALSE) {
     paste0(strrep(" ", floor(padding / 2)), text, strrep(" ", ceiling(padding / 2)))
 }
 
-format_row_cm = function(
-    row,
-    col_widths,
-    left_align_first = FALSE,
-    pos = FALSE
+format_row_pm = function(
+        row,
+        col_widths,
+        left_align_first = FALSE,
+        pos = FALSE
 ) {
     row = as.character(row)
     formatted = vapply(seq_along(row), function(i) {
