@@ -31,14 +31,16 @@ Complete contingency table displayer
 - [`ct_style()`](https://joshuamarie.github.io/tabstats/reference/ct_style.md)
   : Style specification for cross_table()
 
-### Correlation Matrix Table
+### Pairwise Matrix Table
 
-SAS-like Correlation Matrix table
+SAS-like pairwise matrix table; use for correlation matrices and beyond
 
-- [`corr_matrix()`](https://joshuamarie.github.io/tabstats/reference/corr_matrix.md)
-  : Display a Correlation Matrix Table in the Console
-- [`new_corr_data()`](https://joshuamarie.github.io/tabstats/reference/new_corr_data.md)
-  : Build a correlation display specification
+- [`pairwise_matrix()`](https://joshuamarie.github.io/tabstats/reference/pairwise_matrix.md)
+  [`corr_matrix()`](https://joshuamarie.github.io/tabstats/reference/pairwise_matrix.md)
+  : Display a Pairwise Matrix Table in the Console
+- [`new_pairwise_data()`](https://joshuamarie.github.io/tabstats/reference/new_pairwise_data.md)
+  [`new_corr_data()`](https://joshuamarie.github.io/tabstats/reference/new_pairwise_data.md)
+  : Build a pairwise matrix display specification
 - [`cm_style()`](https://joshuamarie.github.io/tabstats/reference/cm_style.md)
   : Style specification for corr_matrix()
 

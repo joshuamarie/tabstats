@@ -19,12 +19,14 @@ displaying statistical results on the R console/command line as a table.
 Install the following package from CRAN:
 
 ``` r
+
 install.packages("tabstats")
 ```
 
 Or install the development version from GitHub:
 
 ``` r
+
 # install.packages("pak")
 pak::pak("joshuamarie/tabstats")
 ## devtools::install_github("joshuamarie/tabstats") 
@@ -36,6 +38,7 @@ Here’s a basic example that demonstrates how to use `tabstats` to format
 and style a table:
 
 ``` r
+
 table_default(head(mtcars, 5))
 #> ────────────────────────────────────────────────────────────────────
 #>    mpg    cyl  disp  hp   drat    wt     qsec   vs  am  gear  carb  
