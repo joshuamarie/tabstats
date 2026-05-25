@@ -11,12 +11,12 @@ interactive workflows.
 
 The package provides four main functions:
 
-| Function                                                                                   | Purpose                                    |
-|--------------------------------------------------------------------------------------------|--------------------------------------------|
-| [`table_default()`](https://joshuamarie.github.io/tabstats/dev/reference/table_default.md) | General-purpose data frame table           |
-| [`table_summary()`](https://joshuamarie.github.io/tabstats/dev/reference/table_summary.md) | Two-column key-value summary table         |
-| [`corr_matrix()`](https://joshuamarie.github.io/tabstats/dev/reference/corr_matrix.md)     | Correlation matrix display                 |
-| [`cross_table()`](https://joshuamarie.github.io/tabstats/dev/reference/cross_table.md)     | Cross tabulation with optional percentages |
+| Function | Purpose |
+|----|----|
+| [`table_default()`](https://joshuamarie.github.io/tabstats/dev/reference/table_default.md) | General-purpose data frame table |
+| [`table_summary()`](https://joshuamarie.github.io/tabstats/dev/reference/table_summary.md) | Two-column key-value summary table |
+| [`corr_matrix()`](https://joshuamarie.github.io/tabstats/dev/reference/pairwise_matrix.md) | Correlation matrix display |
+| [`cross_table()`](https://joshuamarie.github.io/tabstats/dev/reference/cross_table.md) | Cross tabulation with optional percentages |
 
 All functions share a common design philosophy:
 
@@ -33,12 +33,14 @@ All functions share a common design philosophy:
 Install the following package from CRAN:
 
 ``` r
+
 install.packages("tabstats")
 ```
 
 Or install the development version from GitHub:
 
 ``` r
+
 # install.packages("pak")
 pak::pak("joshuamarie/tabstats")
 ## devtools::install_github("joshuamarie/tabstats") 
@@ -54,6 +56,7 @@ into a specific format
 Data frames usually looks like this when displayed:
 
 ``` r
+
 head(mtcars[, 1:5], 5)
 ```
 
@@ -72,6 +75,7 @@ the data frame is now displayed in an APA-style format, with
 configurable formatting.
 
 ``` r
+
 table_default(head(mtcars[, 1:5], 5))
 ```
 
@@ -98,6 +102,7 @@ of values, like model diagnostics or descriptive statistics, where the
 is the estimate.
 
 ``` r
+
 df = data.frame(
     Statistic = c("N", "Mean", "SD", "Min", "Max"),
     Value = c("100", "3.45", "1.20", "1.00", "6.00")
@@ -111,6 +116,7 @@ table_summary(
 ```
 
 ``` r-output
+
 Descriptive Statistics
 ----------------------
   Statistic    Value
@@ -134,10 +140,12 @@ matrix, typically the output of
 [`cor()`](https://rdrr.io/r/stats/cor.html), you can directly pass it.
 
 ``` r
+
 corr_matrix(cor(mtcars[, 1:4]), method = "Pearson")
 ```
 
 ``` r-output
+
                Correlation Matrix               
 ────────────────────────────────────────────────
   Variable    mpg      cyl      disp      hp    
@@ -155,13 +163,14 @@ corr_matrix(cor(mtcars[, 1:4]), method = "Pearson")
 But, if the data you wanted to display is not a matrix, but on another
 form, you’re going to have to configure it by building a custom spec
 with
-[`new_corr_data()`](https://joshuamarie.github.io/tabstats/dev/reference/new_corr_data.md)
+[`new_corr_data()`](https://joshuamarie.github.io/tabstats/dev/reference/new_pairwise_data.md)
 for full control over which values to appear.
 
 A wild example, assuming you want to display the output from
 [`rstatix::cor_test()`](https://rpkgs.datanovia.com/rstatix/reference/cor_test.html):
 
 ``` r
+
 cor_mat = 
     iris |> 
     rstatix::cor_test(Sepal.Width, Sepal.Length, Petal.Length) |> 
@@ -198,6 +207,7 @@ cor_mat |>
 ```
 
 ``` r-output
+
                       Pearson Correlation Matrix                      
 ──────────────────────────────────────────────────────────────────────
   Variable         Sepal.Width      Sepal.Length      Petal.Length    
@@ -227,6 +237,7 @@ including the observed frequencies, expected values, and percentages
 side by side.
 
 ``` r
+
 m = matrix(
     c(10, 20, 30, 40), 
     nrow = 2,
@@ -240,6 +251,7 @@ cross_table(m, percentage = "all")
 ```
 
 ``` r-output
+
 ┌──────────────────────────────────┐ 
 |      Layout for Cont. Table      | 
 ├──────────────────────────────────┤ 
@@ -293,19 +305,20 @@ All table functions provides an API to style the table.
     [`ct_style()`](https://joshuamarie.github.io/tabstats/dev/reference/ct_style.md)
     to configure the style of the displayed values.
 
-4.  [`corr_matrix()`](https://joshuamarie.github.io/tabstats/dev/reference/corr_matrix.md)
+4.  [`corr_matrix()`](https://joshuamarie.github.io/tabstats/dev/reference/pairwise_matrix.md)
     has a `style` parameter to configure the style of the values you
     entered, typically from the `display` argument using
-    [`new_corr_data()`](https://joshuamarie.github.io/tabstats/dev/reference/new_corr_data.md).
+    [`new_corr_data()`](https://joshuamarie.github.io/tabstats/dev/reference/new_pairwise_data.md).
     Use
     [`cm_style()`](https://joshuamarie.github.io/tabstats/dev/reference/cm_style.md)
     to configure those values you assigned into
-    [`new_corr_data()`](https://joshuamarie.github.io/tabstats/dev/reference/new_corr_data.md)
+    [`new_corr_data()`](https://joshuamarie.github.io/tabstats/dev/reference/new_pairwise_data.md)
     into the displayed table.
 
 The quickest way to style output is with a named string:
 
 ``` r
+
 table_summary(
     df, 
     title = "Descriptive Statistics", 
@@ -320,6 +333,7 @@ table_summary(
 ```
 
 ``` r-output
+
 Descriptive Statistics 
 -----------------------
   Statistic    Value
@@ -336,6 +350,7 @@ For full control, pass a lambda instead — it receives the text as its
 argument:
 
 ``` r
+
 table_summary(
     df, 
     title = "Descriptive Statistics", 
@@ -350,6 +365,7 @@ table_summary(
 ```
 
 ``` r-output
+
 Descriptive Statistics 
 -----------------------
   Statistic    Value
@@ -364,23 +380,24 @@ Descriptive Statistics
 
 Supported named style strings:
 
-| String                                   | Effect                              |
-|------------------------------------------|-------------------------------------|
-| `"bold"`                                 | Bold text                           |
-| `"italic"`                               | Italic text                         |
-| `"blue"`, `"red"`, `"green"`, `"yellow"` | Foreground colour                   |
-| `"blue_bold"`                            | Colour + bold (combinable with `_`) |
-| `"red_italic"`                           | Colour + italic                     |
+| String | Effect |
+|----|----|
+| `"bold"` | Bold text |
+| `"italic"` | Italic text |
+| `"blue"`, `"red"`, `"green"`, `"yellow"` | Foreground colour |
+| `"blue_bold"` | Colour + bold (combinable with `_`) |
+| `"red_italic"` | Colour + italic |
 
 More example: Imagine you want to apply for the p-value of the output
 from
 [`rstatix::cor_test()`](https://rpkgs.datanovia.com/rstatix/reference/cor_test.html),
 an earlier example. In
-[`corr_matrix()`](https://joshuamarie.github.io/tabstats/dev/reference/corr_matrix.md),
+[`corr_matrix()`](https://joshuamarie.github.io/tabstats/dev/reference/pairwise_matrix.md),
 you can even conditionally format the specified value from
-[`new_corr_data()`](https://joshuamarie.github.io/tabstats/dev/reference/new_corr_data.md).
+[`new_corr_data()`](https://joshuamarie.github.io/tabstats/dev/reference/new_pairwise_data.md).
 
 ``` r
+
 cor_mat |> 
     with({
         corr_matrix(
@@ -410,6 +427,7 @@ cor_mat |>
 ```
 
 ``` r-output
+
                       Pearson Correlation Matrix                      
 ──────────────────────────────────────────────────────────────────────
   Variable         Sepal.Width      Sepal.Length      Petal.Length    

@@ -13,8 +13,8 @@
 <link rel="manifest" href="../site.webmanifest">
 <!-- katex math --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><script src="../katex-auto.js"></script><script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Viaoda_Libre-0.4.10/font.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/Viaoda_Libre-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/Fira_Mono-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -108,7 +108,7 @@ workflows.</p>
 <td>Two-column key-value summary table</td>
 </tr>
 <tr class="odd">
-<td><code><a href="../reference/corr_matrix.html">corr_matrix()</a></code></td>
+<td><code><a href="../reference/pairwise_matrix.html">corr_matrix()</a></code></td>
 <td>Correlation matrix display</td>
 </tr>
 <tr class="even">
@@ -226,7 +226,7 @@ designed for correlation matrices. If the <code>display</code> is a
 correlation matrix, typically the output of <code><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor()</a></code>, you can
 directly pass it.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/corr_matrix.html">corr_matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"Pearson"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/pairwise_matrix.html">corr_matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"Pearson"</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code>
                Correlation Matrix               
 ────────────────────────────────────────────────
@@ -243,7 +243,7 @@ directly pass it.</p>
 </code></pre>
 <p>But, if the data you wanted to display is not a matrix, but on
 another form, you’re going to have to configure it by building a custom
-spec with <code><a href="../reference/new_corr_data.html">new_corr_data()</a></code> for full control over which
+spec with <code><a href="../reference/new_pairwise_data.html">new_corr_data()</a></code> for full control over which
 values to appear.</p>
 <p>A wild example, assuming you want to display the output from
 <code><a href="https://rpkgs.datanovia.com/rstatix/reference/cor_test.html" class="external-link">rstatix::cor_test()</a></code>:</p>
@@ -269,8 +269,8 @@ values to appear.</p>
 <span></span>
 <span><span class="va">cor_mat</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="op">{</span></span>
-<span>        <span class="fu"><a href="../reference/corr_matrix.html">corr_matrix</a></span><span class="op">(</span></span>
-<span>            <span class="fu"><a href="../reference/new_corr_data.html">new_corr_data</a></span><span class="op">(</span></span>
+<span>        <span class="fu"><a href="../reference/pairwise_matrix.html">corr_matrix</a></span><span class="op">(</span></span>
+<span>            <span class="fu"><a href="../reference/new_pairwise_data.html">new_corr_data</a></span><span class="op">(</span></span>
 <span>                var1 <span class="op">=</span> <span class="va">var1</span>,</span>
 <span>                var2 <span class="op">=</span> <span class="va">var2</span>,</span>
 <span>                corr <span class="op">=</span> <span class="va">cor</span>,</span>
@@ -372,11 +372,11 @@ column.</p></li>
 configure the style of the data displayed by the function. Use
 <code><a href="../reference/ct_style.html">ct_style()</a></code> to configure the style of the displayed
 values.</p></li>
-<li><p><code><a href="../reference/corr_matrix.html">corr_matrix()</a></code> has a <code>style</code> parameter to
+<li><p><code><a href="../reference/pairwise_matrix.html">corr_matrix()</a></code> has a <code>style</code> parameter to
 configure the style of the values you entered, typically from the
-<code>display</code> argument using <code><a href="../reference/new_corr_data.html">new_corr_data()</a></code>. Use
+<code>display</code> argument using <code><a href="../reference/new_pairwise_data.html">new_corr_data()</a></code>. Use
 <code><a href="../reference/cm_style.html">cm_style()</a></code> to configure those values you assigned into
-<code><a href="../reference/new_corr_data.html">new_corr_data()</a></code> into the displayed table.</p></li>
+<code><a href="../reference/new_pairwise_data.html">new_corr_data()</a></code> into the displayed table.</p></li>
 </ol>
 <p>The quickest way to style output is with a named string:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -467,13 +467,13 @@ argument:</p>
 </table>
 <p>More example: Imagine you want to apply for the p-value of the output
 from <code><a href="https://rpkgs.datanovia.com/rstatix/reference/cor_test.html" class="external-link">rstatix::cor_test()</a></code>, an earlier example. In
-<code><a href="../reference/corr_matrix.html">corr_matrix()</a></code>, you can even conditionally format the
-specified value from <code><a href="../reference/new_corr_data.html">new_corr_data()</a></code>.</p>
+<code><a href="../reference/pairwise_matrix.html">corr_matrix()</a></code>, you can even conditionally format the
+specified value from <code><a href="../reference/new_pairwise_data.html">new_corr_data()</a></code>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cor_mat</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="op">{</span></span>
-<span>        <span class="fu"><a href="../reference/corr_matrix.html">corr_matrix</a></span><span class="op">(</span></span>
-<span>            <span class="fu"><a href="../reference/new_corr_data.html">new_corr_data</a></span><span class="op">(</span></span>
+<span>        <span class="fu"><a href="../reference/pairwise_matrix.html">corr_matrix</a></span><span class="op">(</span></span>
+<span>            <span class="fu"><a href="../reference/new_pairwise_data.html">new_corr_data</a></span><span class="op">(</span></span>
 <span>                var1 <span class="op">=</span> <span class="va">var1</span>,</span>
 <span>                var2 <span class="op">=</span> <span class="va">var2</span>,</span>
 <span>                corr <span class="op">=</span> <span class="va">cor</span>,</span>

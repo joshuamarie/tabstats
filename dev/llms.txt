@@ -19,12 +19,14 @@ displaying statistical results on the R console/command line as a table.
 Install the following package from CRAN:
 
 ``` r
+
 install.packages("tabstats")
 ```
 
 Or install the development version from GitHub:
 
 ``` r
+
 # install.packages("pak")
 pak::pak("joshuamarie/tabstats")
 ## devtools::install_github("joshuamarie/tabstats") 
@@ -36,6 +38,7 @@ Here’s a basic example that demonstrates how to use `tabstats` to format
 and style a table:
 
 ``` r
+
 table_default(head(mtcars, 5))
 #> ────────────────────────────────────────────────────────────────────
 #>    mpg    cyl  disp  hp   drat    wt     qsec   vs  am  gear  carb  
@@ -95,14 +98,16 @@ Complete contingency table displayer
 - [`ct_style()`](https://joshuamarie.github.io/tabstats/dev/reference/ct_style.md)
   : Style specification for cross_table()
 
-### Correlation Matrix Table
+### Pairwise Matrix Table
 
-SAS-like Correlation Matrix table
+SAS-like pairwise matrix table; use for correlation matrices and beyond
 
-- [`corr_matrix()`](https://joshuamarie.github.io/tabstats/dev/reference/corr_matrix.md)
-  : Display a Correlation Matrix Table in the Console
-- [`new_corr_data()`](https://joshuamarie.github.io/tabstats/dev/reference/new_corr_data.md)
-  : Build a correlation display specification
+- [`pairwise_matrix()`](https://joshuamarie.github.io/tabstats/dev/reference/pairwise_matrix.md)
+  [`corr_matrix()`](https://joshuamarie.github.io/tabstats/dev/reference/pairwise_matrix.md)
+  : Display a Pairwise Matrix Table in the Console
+- [`new_pairwise_data()`](https://joshuamarie.github.io/tabstats/dev/reference/new_pairwise_data.md)
+  [`new_corr_data()`](https://joshuamarie.github.io/tabstats/dev/reference/new_pairwise_data.md)
+  : Build a pairwise matrix display specification
 - [`cm_style()`](https://joshuamarie.github.io/tabstats/dev/reference/cm_style.md)
   : Style specification for corr_matrix()
 
