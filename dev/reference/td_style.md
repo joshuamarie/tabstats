@@ -1,7 +1,7 @@
 # Style specification for table_default()
 
 Constructs a validated style object for use with
-[`table_default()`](https://joshuamarie.github.io/tabstats/dev/reference/table_default.md).
+[`table_default()`](https://s7-stats.github.io/tabstats/dev/reference/table_default.md).
 
 ## Usage
 

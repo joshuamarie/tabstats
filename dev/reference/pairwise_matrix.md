@@ -38,7 +38,7 @@ corr_matrix(
 - display:
 
   A `pairwise_spec` object from
-  [`new_pairwise_data()`](https://joshuamarie.github.io/tabstats/dev/reference/new_pairwise_data.md),
+  [`new_pairwise_data()`](https://s7-stats.github.io/tabstats/dev/reference/new_pairwise_data.md),
   or a plain symmetric matrix (e.g. from
   [`cor()`](https://rdrr.io/r/stats/cor.html)).
 
@@ -79,7 +79,7 @@ corr_matrix(
 - style:
 
   A style list. Keys match the extra field names passed to
-  [`new_pairwise_data()`](https://joshuamarie.github.io/tabstats/dev/reference/new_pairwise_data.md)
+  [`new_pairwise_data()`](https://s7-stats.github.io/tabstats/dev/reference/new_pairwise_data.md)
   (e.g. `rho`, `pval`, `bf`), plus `title` and `border_text`.
 
 - ...:

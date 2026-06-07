@@ -78,7 +78,7 @@ table_default(
 - title:
 
   Optional title string above the table. from
-  [`td_style()`](https://joshuamarie.github.io/tabstats/dev/reference/td_style.md),
+  [`td_style()`](https://s7-stats.github.io/tabstats/dev/reference/td_style.md),
   or a named list where each name is a column name or `"title"`, and
   each value is either a cli style string (e.g. `"blue_bold"`) or a
   function `\(ctx) ...` receiving a context list.
@@ -86,7 +86,7 @@ table_default(
 - style_colnames:
 
   Styling for column header cells. A `td_style` object from
-  [`td_style()`](https://joshuamarie.github.io/tabstats/dev/reference/td_style.md),
+  [`td_style()`](https://s7-stats.github.io/tabstats/dev/reference/td_style.md),
   or a named list where each name is a column name or `"title"`, and
   each value is either a cli style string (e.g. `"blue_bold"`) or a
   function `\(ctx) ...` receiving a context list.
@@ -94,7 +94,7 @@ table_default(
 - style_columns:
 
   Styling for data cells. A `td_style` object from
-  [`td_style()`](https://joshuamarie.github.io/tabstats/dev/reference/td_style.md),
+  [`td_style()`](https://s7-stats.github.io/tabstats/dev/reference/td_style.md),
   or a named list where each name is a column name or column index as a
   string, and each value is a cli style string or a function
   `\(ctx) ...` receiving a context list with elements `value`,

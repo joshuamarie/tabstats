@@ -3,4 +3,4 @@
 ### Get started
 
 - [Getting
-  Started](https://joshuamarie.github.io/tabstats/dev/articles/tabstats.md):
+  Started](https://s7-stats.github.io/tabstats/dev/articles/tabstats.md):

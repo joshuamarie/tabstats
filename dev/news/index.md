@@ -2,19 +2,23 @@
 
 ## tabstats (development version)
 
+## tabstats 0.2.0
+
+CRAN release: 2026-05-25
+
 - Added
-  [`pairwise_matrix()`](https://joshuamarie.github.io/tabstats/dev/reference/pairwise_matrix.md)
+  [`pairwise_matrix()`](https://s7-stats.github.io/tabstats/dev/reference/pairwise_matrix.md)
   and
-  [`new_pairwise_data()`](https://joshuamarie.github.io/tabstats/dev/reference/new_pairwise_data.md)
+  [`new_pairwise_data()`](https://s7-stats.github.io/tabstats/dev/reference/new_pairwise_data.md)
   as generalized equivalents of
-  [`corr_matrix()`](https://joshuamarie.github.io/tabstats/dev/reference/pairwise_matrix.md)
+  [`corr_matrix()`](https://s7-stats.github.io/tabstats/dev/reference/pairwise_matrix.md)
   and
-  [`new_corr_data()`](https://joshuamarie.github.io/tabstats/dev/reference/new_pairwise_data.md).
+  [`new_corr_data()`](https://s7-stats.github.io/tabstats/dev/reference/new_pairwise_data.md).
   The new functions work with any pairwise display, not just correlation
   matrices.
-- [`corr_matrix()`](https://joshuamarie.github.io/tabstats/dev/reference/pairwise_matrix.md)
+- [`corr_matrix()`](https://s7-stats.github.io/tabstats/dev/reference/pairwise_matrix.md)
   and
-  [`new_corr_data()`](https://joshuamarie.github.io/tabstats/dev/reference/new_pairwise_data.md)
+  [`new_corr_data()`](https://s7-stats.github.io/tabstats/dev/reference/new_pairwise_data.md)
   are retained as aliases for backward compatibility.
 
 ## tabstats 0.1.0
