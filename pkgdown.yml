@@ -3,7 +3,7 @@ pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   tabstats: tabstats.html
-last_built: 2026-07-08T10:16Z
+last_built: 2026-07-08T10:18Z
 urls:
   reference: https://s7-stats.github.io/tabstats/reference
   article: https://s7-stats.github.io/tabstats/articles

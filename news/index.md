@@ -14,8 +14,9 @@
   (at the `Styling Primer` part).
 
 - [tabstats](https://github.com/s7-stats/tabstats) GitHub repository is
-  now under S7 stats. Changing link to
-  <https://s7-stats.github.io/tabstats/>.
+  now under S7 stats. Changing username to `s7-stats`.
+
+  - Changing link to <https://s7-stats.github.io/tabstats/>.
 
 ## tabstats 0.2.0
 
