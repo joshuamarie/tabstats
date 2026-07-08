@@ -52,7 +52,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/joshuamarie/kindling" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="nav-link" href="https://s7-stats.github.io/tabstats" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch">
@@ -61,7 +61,6 @@
     <li><button class="dropdown-item" data-bs-theme-value="auto"><span class="fa fa-adjust"></span> Auto</button></li>
   </ul>
 </li>
-<li class="nav-item"><a class="external-link nav-link" href="https://joshuamarie.com"><span class="fa fa-blog"></span> Blog</a></li>
       </ul>
 </div>
 
@@ -282,25 +281,25 @@ values to appear.</p>
 <span>        <span class="op">)</span></span>
 <span>    <span class="op">}</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code>
-                      Pearson Correlation Matrix                      
-──────────────────────────────────────────────────────────────────────
-  Variable         Sepal.Width      Sepal.Length      Petal.Length    
-──────────────────────────────────────────────────────────────────────
-  Sepal.Width           1               -0.12             -0.43       
-                                      -1.4e+00          -5.8e+00      
-                                        0.152           4.51e-08      
-                                   [-0.27,  0.044]   [-0.55, -0.288]  
-──────────────────────────────────────────────────────────────────────
-  Sepal.Length        -0.12               1                0.87       
-                    -1.4e+00                             2.2e+01      
-                      0.152                             1.04e-47      
-                 [-0.27,  0.044]                     [ 0.83,  0.906]  
-──────────────────────────────────────────────────────────────────────
-  Petal.Length        -0.43              0.87               1         
-                    -5.8e+00           2.2e+01                        
-                    4.51e-08          1.04e-47                        
-                 [-0.55, -0.288]   [ 0.83,  0.906]                    
-──────────────────────────────────────────────────────────────────────
+                             Pearson Correlation Matrix                              
+─────────────────────────────────────────────────────────────────────────────────────
+  Variable           Sepal.Width            Sepal.Length           Petal.Length      
+─────────────────────────────────────────────────────────────────────────────────────
+  Sepal.Width             1                    -0.12                  -0.43          
+                                              -1.4e+00               -5.8e+00        
+                                         0.151898260711448     4.51331426727308e-08  
+                                          [-0.27,  0.044]        [-0.55, -0.288]     
+─────────────────────────────────────────────────────────────────────────────────────
+  Sepal.Length          -0.12                    1                     0.87          
+                       -1.4e+00                                       2.2e+01        
+                  0.151898260711448                            1.03866741944984e-47  
+                   [-0.27,  0.044]                               [ 0.83,  0.906]     
+─────────────────────────────────────────────────────────────────────────────────────
+  Petal.Length          -0.43                   0.87                    1            
+                       -5.8e+00                2.2e+01                               
+                 4.51331426727308e-08   1.03866741944984e-47                         
+                   [-0.55, -0.288]        [ 0.83,  0.906]                            
+─────────────────────────────────────────────────────────────────────────────────────
 </code></pre>
 </div>
 <div class="section level3">
@@ -429,6 +428,37 @@ argument:</p>
   <span style="color: #BB0000; font-weight: bold;">Max      </span> :   <span style="color: #00BBBB;"> 6.00</span>
 -----------------------
 </code></pre>
+<p>Hex codes are also supported:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/table_summary.html">table_summary</a></span><span class="op">(</span></span>
+<span>    <span class="va">df</span>, </span>
+<span>    title <span class="op">=</span> <span class="st">"Descriptive Statistics"</span>, </span>
+<span>    header <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    style <span class="op">=</span> <span class="fu"><a href="../reference/sm_style.html">sm_style</a></span><span class="op">(</span></span>
+<span>        left_col <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>            <span class="va">red</span> <span class="op">=</span> <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/make_ansi_style.html" class="external-link">make_ansi_style</a></span><span class="op">(</span><span class="st">"#BD4444"</span><span class="op">)</span></span>
+<span>            <span class="fu">red</span><span class="op">(</span><span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/ansi-styles.html" class="external-link">style_bold</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span>        <span class="op">}</span>,</span>
+<span>        right_col <span class="op">=</span> \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>            <span class="va">bluish_color</span> <span class="op">=</span> <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/make_ansi_style.html" class="external-link">make_ansi_style</a></span><span class="op">(</span><span class="st">"#67A2C5"</span><span class="op">)</span></span>
+<span>            <span class="fu">bluish_color</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span>        <span class="op">}</span>, </span>
+<span>        title <span class="op">=</span> <span class="st">"bold"</span>, </span>
+<span>        sep <span class="op">=</span> <span class="st">":  "</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<pre class="r-output"><code>
+<span style="font-weight: bold;">Descriptive Statistics </span>
+-----------------------
+  Statistic    Value
+-----------------------
+  <span style="color: #D75F5F; font-weight: bold;">N        </span> :   <span style="color: #87AFD7;">  100</span>
+  <span style="color: #D75F5F; font-weight: bold;">Mean     </span> :   <span style="color: #87AFD7;"> 3.45</span>
+  <span style="color: #D75F5F; font-weight: bold;">SD       </span> :   <span style="color: #87AFD7;"> 1.20</span>
+  <span style="color: #D75F5F; font-weight: bold;">Min      </span> :   <span style="color: #87AFD7;"> 1.00</span>
+  <span style="color: #D75F5F; font-weight: bold;">Max      </span> :   <span style="color: #87AFD7;"> 6.00</span>
+-----------------------
+</code></pre>
 <p>Supported named style strings:</p>
 <table class="table">
 <colgroup>
@@ -469,7 +499,7 @@ argument:</p>
 from <code><a href="https://rpkgs.datanovia.com/rstatix/reference/cor_test.html" class="external-link">rstatix::cor_test()</a></code>, an earlier example. In
 <code><a href="../reference/pairwise_matrix.html">corr_matrix()</a></code>, you can even conditionally format the
 specified value from <code><a href="../reference/new_pairwise_data.html">new_corr_data()</a></code>.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cor_mat</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>        <span class="fu"><a href="../reference/pairwise_matrix.html">corr_matrix</a></span><span class="op">(</span></span>
@@ -488,7 +518,9 @@ specified value from <code><a href="../reference/new_pairwise_data.html">new_cor
 <span>                    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">x_num</span><span class="op">)</span> <span class="op">||</span> <span class="va">x_num</span> <span class="op">&gt;</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">{</span></span>
 <span>                        <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/ansi-styles.html" class="external-link">style_italic</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> </span>
 <span>                    <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">x_num</span> <span class="op">&gt;</span> <span class="fl">0.01</span><span class="op">)</span> <span class="op">{</span></span>
-<span>                        <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/ansi-styles.html" class="external-link">col_red</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span>                        <span class="va">reddish</span> <span class="op">=</span> <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/make_ansi_style.html" class="external-link">make_ansi_style</a></span><span class="op">(</span><span class="st">"#CE2626"</span><span class="op">)</span></span>
+<span>                        <span class="fu">reddish</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span>                        <span class="co"># or just cli::col_red(x)</span></span>
 <span>                    <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span>                        <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/ansi-styles.html" class="external-link">style_bold</a></span><span class="op">(</span><span class="st">"&lt;0.001"</span><span class="op">)</span></span>
 <span>                    <span class="op">}</span></span>
@@ -497,25 +529,25 @@ specified value from <code><a href="../reference/new_pairwise_data.html">new_cor
 <span>        <span class="op">)</span></span>
 <span>    <span class="op">}</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code>
-                      Pearson Correlation Matrix                      
-──────────────────────────────────────────────────────────────────────
-  Variable         Sepal.Width      Sepal.Length      Petal.Length    
-──────────────────────────────────────────────────────────────────────
-  Sepal.Width           1               -0.12             -0.43       
-                                      -1.4e+00          -5.8e+00      
-                                        <span style="font-style: italic;">0.152</span>            <span style="font-weight: bold;">&lt;0.001</span>       
-                                   [-0.27,  0.044]   [-0.55, -0.288]  
-──────────────────────────────────────────────────────────────────────
-  Sepal.Length        -0.12               1                0.87       
-                    -1.4e+00                             2.2e+01      
-                      <span style="font-style: italic;">0.152</span>                              <span style="font-weight: bold;">&lt;0.001</span>       
-                 [-0.27,  0.044]                     [ 0.83,  0.906]  
-──────────────────────────────────────────────────────────────────────
-  Petal.Length        -0.43              0.87               1         
-                    -5.8e+00           2.2e+01                        
-                     <span style="font-weight: bold;">&lt;0.001</span>            <span style="font-weight: bold;">&lt;0.001</span>                         
-                 [-0.55, -0.288]   [ 0.83,  0.906]                    
-──────────────────────────────────────────────────────────────────────
+                             Pearson Correlation Matrix                              
+─────────────────────────────────────────────────────────────────────────────────────
+  Variable           Sepal.Width            Sepal.Length           Petal.Length      
+─────────────────────────────────────────────────────────────────────────────────────
+  Sepal.Width             1                    -0.12                  -0.43          
+                                              -1.4e+00               -5.8e+00        
+                                         <span style="font-style: italic;">0.151898260711448</span>            <span style="font-weight: bold;">&lt;0.001</span>         
+                                          [-0.27,  0.044]        [-0.55, -0.288]     
+─────────────────────────────────────────────────────────────────────────────────────
+  Sepal.Length          -0.12                    1                     0.87          
+                       -1.4e+00                                       2.2e+01        
+                  <span style="font-style: italic;">0.151898260711448</span>                                   <span style="font-weight: bold;">&lt;0.001</span>         
+                   [-0.27,  0.044]                               [ 0.83,  0.906]     
+─────────────────────────────────────────────────────────────────────────────────────
+  Petal.Length          -0.43                   0.87                    1            
+                       -5.8e+00                2.2e+01                               
+                        <span style="font-weight: bold;">&lt;0.001</span>                 <span style="font-weight: bold;">&lt;0.001</span>                                
+                   [-0.55, -0.288]        [ 0.83,  0.906]                            
+─────────────────────────────────────────────────────────────────────────────────────
 </code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -118,12 +118,12 @@ spec = new_pairwise_data(
 )
 pairwise_matrix(spec, title = "Pearson Correlation Matrix", layout_view = TRUE)
 #> 
-#> ┌───────────────────────────┐
-#> | Layout for Pairwise Matri |
-#> ├───────────────────────────┤
-#> |          < rho >          |
-#> |         < pval >          |
-#> └───────────────────────────┘
+#> ┌────────────────────────────┐
+#> | Layout for Pairwise Matrix |
+#> ├────────────────────────────┤
+#> |          < rho >           |
+#> |          < pval >          |
+#> └────────────────────────────┘
 #> 
 #> 
 #>     Pearson Correlation Matrix    
