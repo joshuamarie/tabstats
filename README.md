@@ -3,7 +3,7 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/tabstats)](https://CRAN.R-project.org/package=tabstats)
-[![R-CMD-check](https://github.com/joshuamarie/tabstats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/joshuamarie/tabstats/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/s7-stats/tabstats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/s7-stats/tabstats/actions/workflows/R-CMD-check.yaml)
 
 ## Package overview
 
@@ -27,8 +27,8 @@ Or install the development version from GitHub:
 
 ``` r
 # install.packages("pak")
-pak::pak("joshuamarie/tabstats")
-## devtools::install_github("joshuamarie/tabstats") 
+pak::pak("s7-stats/tabstats")
+## devtools::install_github("s7-stats/tabstats") 
 ```
 
 ## Example
