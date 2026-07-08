@@ -1,7 +1,7 @@
 # Build a pairwise matrix display specification
 
 Constructs a structured spec object consumed by
-[`pairwise_matrix()`](https://joshuamarie.github.io/tabstats/reference/pairwise_matrix.md).
+[`pairwise_matrix()`](https://s7-stats.github.io/tabstats/reference/pairwise_matrix.md).
 Always requires `var1` and `var2` — the pair pattern they encode
 determines which triangle(s) of the matrix are filled:
 

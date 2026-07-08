@@ -1,7 +1,7 @@
 # Style specification for corr_matrix()
 
 Constructs a validated style object for use with
-[`corr_matrix()`](https://joshuamarie.github.io/tabstats/reference/pairwise_matrix.md).
+[`corr_matrix()`](https://s7-stats.github.io/tabstats/reference/pairwise_matrix.md).
 
 ## Usage
 
@@ -15,7 +15,7 @@ cm_style(...)
 
   Named style entries. Names should match the extra field names passed
   to
-  [`new_corr_data()`](https://joshuamarie.github.io/tabstats/reference/new_pairwise_data.md)
+  [`new_corr_data()`](https://s7-stats.github.io/tabstats/reference/new_pairwise_data.md)
   (e.g. `rho`, `pval`, `bf`), or the reserved keys `title` and
   `border_text`.
 

@@ -2,7 +2,7 @@
 
 ## Rationale
 
-[tabstats](https://github.com/joshuamarie/tabstats) is a lightweight
+[tabstats](https://github.com/s7-stats/tabstats) is a lightweight
 package for displaying data in clean, formatted tables directly in the
 console. It is mainly designed for developers who wants to display their
 outputs (preferably in a data frame object), and to make the output
@@ -13,10 +13,10 @@ The package provides four main functions:
 
 | Function | Purpose |
 |----|----|
-| [`table_default()`](https://joshuamarie.github.io/tabstats/reference/table_default.md) | General-purpose data frame table |
-| [`table_summary()`](https://joshuamarie.github.io/tabstats/reference/table_summary.md) | Two-column key-value summary table |
-| [`corr_matrix()`](https://joshuamarie.github.io/tabstats/reference/pairwise_matrix.md) | Correlation matrix display |
-| [`cross_table()`](https://joshuamarie.github.io/tabstats/reference/cross_table.md) | Cross tabulation with optional percentages |
+| [`table_default()`](https://s7-stats.github.io/tabstats/reference/table_default.md) | General-purpose data frame table |
+| [`table_summary()`](https://s7-stats.github.io/tabstats/reference/table_summary.md) | Two-column key-value summary table |
+| [`corr_matrix()`](https://s7-stats.github.io/tabstats/reference/pairwise_matrix.md) | Correlation matrix display |
+| [`cross_table()`](https://s7-stats.github.io/tabstats/reference/cross_table.md) | Cross tabulation with optional percentages |
 
 All functions share a common design philosophy:
 
@@ -70,7 +70,7 @@ Hornet Sportabout 18.7   8  360 175 3.15
 ```
 
 With
-[`table_default()`](https://joshuamarie.github.io/tabstats/reference/table_default.md),
+[`table_default()`](https://s7-stats.github.io/tabstats/reference/table_default.md),
 the data frame is now displayed in an APA-style format, with
 configurable formatting.
 
@@ -94,7 +94,7 @@ table_default(head(mtcars[, 1:5], 5))
 ### `table_summary()`
 
 Another form of
-[`table_default()`](https://joshuamarie.github.io/tabstats/reference/table_default.md),
+[`table_default()`](https://s7-stats.github.io/tabstats/reference/table_default.md),
 except it is best suitable for displaying summarized data, where it
 requires 2 columns data frame. The simplest use case is a named summary
 of values, like model diagnostics or descriptive statistics, where the
@@ -163,7 +163,7 @@ corr_matrix(cor(mtcars[, 1:4]), method = "Pearson")
 But, if the data you wanted to display is not a matrix, but on another
 form, you’re going to have to configure it by building a custom spec
 with
-[`new_corr_data()`](https://joshuamarie.github.io/tabstats/reference/new_pairwise_data.md)
+[`new_corr_data()`](https://s7-stats.github.io/tabstats/reference/new_pairwise_data.md)
 for full control over which values to appear.
 
 A wild example, assuming you want to display the output from
@@ -208,25 +208,25 @@ cor_mat |>
 
 ``` r-output
 
-                      Pearson Correlation Matrix                      
-──────────────────────────────────────────────────────────────────────
-  Variable         Sepal.Width      Sepal.Length      Petal.Length    
-──────────────────────────────────────────────────────────────────────
-  Sepal.Width           1               -0.12             -0.43       
-                                      -1.4e+00          -5.8e+00      
-                                        0.152           4.51e-08      
-                                   [-0.27,  0.044]   [-0.55, -0.288]  
-──────────────────────────────────────────────────────────────────────
-  Sepal.Length        -0.12               1                0.87       
-                    -1.4e+00                             2.2e+01      
-                      0.152                             1.04e-47      
-                 [-0.27,  0.044]                     [ 0.83,  0.906]  
-──────────────────────────────────────────────────────────────────────
-  Petal.Length        -0.43              0.87               1         
-                    -5.8e+00           2.2e+01                        
-                    4.51e-08          1.04e-47                        
-                 [-0.55, -0.288]   [ 0.83,  0.906]                    
-──────────────────────────────────────────────────────────────────────
+                             Pearson Correlation Matrix                              
+─────────────────────────────────────────────────────────────────────────────────────
+  Variable           Sepal.Width            Sepal.Length           Petal.Length      
+─────────────────────────────────────────────────────────────────────────────────────
+  Sepal.Width             1                    -0.12                  -0.43          
+                                              -1.4e+00               -5.8e+00        
+                                         0.151898260711448     4.51331426727308e-08  
+                                          [-0.27,  0.044]        [-0.55, -0.288]     
+─────────────────────────────────────────────────────────────────────────────────────
+  Sepal.Length          -0.12                    1                     0.87          
+                       -1.4e+00                                       2.2e+01        
+                  0.151898260711448                            1.03866741944984e-47  
+                   [-0.27,  0.044]                               [ 0.83,  0.906]     
+─────────────────────────────────────────────────────────────────────────────────────
+  Petal.Length          -0.43                   0.87                    1            
+                       -5.8e+00                2.2e+01                               
+                 4.51331426727308e-08   1.03866741944984e-47                         
+                   [-0.55, -0.288]        [ 0.83,  0.906]                            
+─────────────────────────────────────────────────────────────────────────────────────
 ```
 
 ### `cross_table()`
@@ -286,33 +286,33 @@ cross_table(m, percentage = "all")
 
 All table functions provides an API to style the table.
 
-1.  [`table_default()`](https://joshuamarie.github.io/tabstats/reference/table_default.md)
+1.  [`table_default()`](https://s7-stats.github.io/tabstats/reference/table_default.md)
     has 2 parameters: `style_colnames` to style the column names you
     wanted to design, and `style_columns` if you want to apply the style
     to the entire column you choose to style. Use
-    [`td_style()`](https://joshuamarie.github.io/tabstats/reference/td_style.md)
+    [`td_style()`](https://s7-stats.github.io/tabstats/reference/td_style.md)
     to configure the style of the column you choose to style.
 
-2.  [`table_summary()`](https://joshuamarie.github.io/tabstats/reference/table_summary.md)
+2.  [`table_summary()`](https://s7-stats.github.io/tabstats/reference/table_summary.md)
     has a `style` parameter to configure the style of the specific
     column you wanted to design. Use
-    [`sm_style()`](https://joshuamarie.github.io/tabstats/reference/sm_style.md)
+    [`sm_style()`](https://s7-stats.github.io/tabstats/reference/sm_style.md)
     to configure the style of the specific column.
 
-3.  [`cross_table()`](https://joshuamarie.github.io/tabstats/reference/cross_table.md)
+3.  [`cross_table()`](https://s7-stats.github.io/tabstats/reference/cross_table.md)
     has a `style` parameter to configure the style of the data displayed
     by the function. Use
-    [`ct_style()`](https://joshuamarie.github.io/tabstats/reference/ct_style.md)
+    [`ct_style()`](https://s7-stats.github.io/tabstats/reference/ct_style.md)
     to configure the style of the displayed values.
 
-4.  [`corr_matrix()`](https://joshuamarie.github.io/tabstats/reference/pairwise_matrix.md)
+4.  [`corr_matrix()`](https://s7-stats.github.io/tabstats/reference/pairwise_matrix.md)
     has a `style` parameter to configure the style of the values you
     entered, typically from the `display` argument using
-    [`new_corr_data()`](https://joshuamarie.github.io/tabstats/reference/new_pairwise_data.md).
+    [`new_corr_data()`](https://s7-stats.github.io/tabstats/reference/new_pairwise_data.md).
     Use
-    [`cm_style()`](https://joshuamarie.github.io/tabstats/reference/cm_style.md)
+    [`cm_style()`](https://s7-stats.github.io/tabstats/reference/cm_style.md)
     to configure those values you assigned into
-    [`new_corr_data()`](https://joshuamarie.github.io/tabstats/reference/new_pairwise_data.md)
+    [`new_corr_data()`](https://s7-stats.github.io/tabstats/reference/new_pairwise_data.md)
     into the displayed table.
 
 The quickest way to style output is with a named string:
@@ -378,6 +378,43 @@ Descriptive Statistics
 -----------------------
 ```
 
+Hex codes are also supported:
+
+``` r
+
+table_summary(
+    df, 
+    title = "Descriptive Statistics", 
+    header = TRUE, 
+    style = sm_style(
+        left_col = function(x) {
+            red = cli::make_ansi_style("#BD4444")
+            red(cli::style_bold(x))
+        },
+        right_col = \(x) {
+            bluish_color = cli::make_ansi_style("#67A2C5")
+            bluish_color(x)
+        }, 
+        title = "bold", 
+        sep = ":  "
+    )
+)
+```
+
+``` r-output
+
+Descriptive Statistics 
+-----------------------
+  Statistic    Value
+-----------------------
+  N         :     100
+  Mean      :    3.45
+  SD        :    1.20
+  Min       :    1.00
+  Max       :    6.00
+-----------------------
+```
+
 Supported named style strings:
 
 | String | Effect |
@@ -392,9 +429,9 @@ More example: Imagine you want to apply for the p-value of the output
 from
 [`rstatix::cor_test()`](https://rpkgs.datanovia.com/rstatix/reference/cor_test.html),
 an earlier example. In
-[`corr_matrix()`](https://joshuamarie.github.io/tabstats/reference/pairwise_matrix.md),
+[`corr_matrix()`](https://s7-stats.github.io/tabstats/reference/pairwise_matrix.md),
 you can even conditionally format the specified value from
-[`new_corr_data()`](https://joshuamarie.github.io/tabstats/reference/new_pairwise_data.md).
+[`new_corr_data()`](https://s7-stats.github.io/tabstats/reference/new_pairwise_data.md).
 
 ``` r
 
@@ -416,7 +453,9 @@ cor_mat |>
                     if (is.na(x_num) || x_num > 0.05) {
                         cli::style_italic(x) 
                     } else if (x_num > 0.01) {
-                        cli::col_red(x)
+                        reddish = cli::make_ansi_style("#CE2626")
+                        reddish(x)
+                        # or just cli::col_red(x)
                     } else {
                         cli::style_bold("<0.001")
                     }
@@ -428,23 +467,23 @@ cor_mat |>
 
 ``` r-output
 
-                      Pearson Correlation Matrix                      
-──────────────────────────────────────────────────────────────────────
-  Variable         Sepal.Width      Sepal.Length      Petal.Length    
-──────────────────────────────────────────────────────────────────────
-  Sepal.Width           1               -0.12             -0.43       
-                                      -1.4e+00          -5.8e+00      
-                                        0.152            <0.001       
-                                   [-0.27,  0.044]   [-0.55, -0.288]  
-──────────────────────────────────────────────────────────────────────
-  Sepal.Length        -0.12               1                0.87       
-                    -1.4e+00                             2.2e+01      
-                      0.152                              <0.001       
-                 [-0.27,  0.044]                     [ 0.83,  0.906]  
-──────────────────────────────────────────────────────────────────────
-  Petal.Length        -0.43              0.87               1         
-                    -5.8e+00           2.2e+01                        
-                     <0.001            <0.001                         
-                 [-0.55, -0.288]   [ 0.83,  0.906]                    
-──────────────────────────────────────────────────────────────────────
+                             Pearson Correlation Matrix                              
+─────────────────────────────────────────────────────────────────────────────────────
+  Variable           Sepal.Width            Sepal.Length           Petal.Length      
+─────────────────────────────────────────────────────────────────────────────────────
+  Sepal.Width             1                    -0.12                  -0.43          
+                                              -1.4e+00               -5.8e+00        
+                                         0.151898260711448            <0.001         
+                                          [-0.27,  0.044]        [-0.55, -0.288]     
+─────────────────────────────────────────────────────────────────────────────────────
+  Sepal.Length          -0.12                    1                     0.87          
+                       -1.4e+00                                       2.2e+01        
+                  0.151898260711448                                   <0.001         
+                   [-0.27,  0.044]                               [ 0.83,  0.906]     
+─────────────────────────────────────────────────────────────────────────────────────
+  Petal.Length          -0.43                   0.87                    1            
+                       -5.8e+00                2.2e+01                               
+                        <0.001                 <0.001                                
+                   [-0.55, -0.288]        [ 0.83,  0.906]                            
+─────────────────────────────────────────────────────────────────────────────────────
 ```

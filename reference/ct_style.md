@@ -1,7 +1,7 @@
 # Style specification for cross_table()
 
 Constructs a validated style object for use with
-[`cross_table()`](https://joshuamarie.github.io/tabstats/reference/cross_table.md).
+[`cross_table()`](https://s7-stats.github.io/tabstats/reference/cross_table.md).
 
 ## Usage
 

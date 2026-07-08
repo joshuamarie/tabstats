@@ -58,7 +58,7 @@ cross_table(
 - style:
 
   Named list supplied using
-  [`ct_style()`](https://joshuamarie.github.io/tabstats/reference/ct_style.md).
+  [`ct_style()`](https://s7-stats.github.io/tabstats/reference/ct_style.md).
 
 - ...:
 

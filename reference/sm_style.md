@@ -1,7 +1,7 @@
 # Style specification for table_summary()
 
 Constructs a validated style object for use with
-[`table_summary()`](https://joshuamarie.github.io/tabstats/reference/table_summary.md).
+[`table_summary()`](https://s7-stats.github.io/tabstats/reference/table_summary.md).
 
 ## Usage
 

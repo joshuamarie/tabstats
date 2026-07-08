@@ -10,9 +10,9 @@ correlation matrices, contingency tables, and two-column summary tables.
 
 Useful links:
 
-- <https://github.com/joshuamarie/tabstats>
+- <https://github.com/s7-stats/tabstats>
 
-- Report bugs at <https://github.com/joshuamarie/tabstats/issues>
+- Report bugs at <https://github.com/s7-stats/tabstats/issues>
 
 ## Author
 

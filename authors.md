@@ -7,14 +7,14 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/joshuamarie/tabstats/blob/v0.2.0/inst/CITATION)
+[`inst/CITATION`](https://github.com/s7-stats/tabstats/blob/main/inst/CITATION)
 
 Marie J (2026). *tabstats: A Lightweight Toolkit for Displaying
-Customizable Tables*. R package version 0.2.0.
+Customizable Tables*. R package version 0.2.1.
 
     @Manual{,
       title = {{tabstats}: A Lightweight Toolkit for Displaying Customizable Tables},
       author = {Joshua Marie},
       year = {2026},
-      note = {R package version 0.2.0},
+      note = {R package version 0.2.1},
     }
