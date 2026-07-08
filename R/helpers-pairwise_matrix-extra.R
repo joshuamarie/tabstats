@@ -67,17 +67,16 @@ left_pad_pm = function(center_table, total_width) {
 }
 
 print_layout_pm = function(field_names, style, border_char, layout_center, center_table, name) {
-    w = 29L
+    title_prefix = "Layout for "
+    w = max(29L, nchar(paste0(title_prefix, name)) + 4L)
     top = paste0("\u250C", strrep("\u2500", w - 2L), "\u2510")
     mid = paste0("\u251C", strrep("\u2500", w - 2L), "\u2524")
     bot = paste0("\u2514", strrep(border_char, w - 2L), "\u2518")
     inner = function(txt) paste0("| ", align_center(txt, w - 4L), " |")
 
-    short_name = if (nchar(name) > w - 14L) paste0(substr(name, 1L, w - 17L), "...") else name
-
     box = c(
         top,
-        inner(style[["title"]](paste0("Layout for ", short_name))),
+        inner(style[["title"]](paste0(title_prefix, name))),
         mid
     )
     for (nm in field_names) {
