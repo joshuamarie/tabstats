@@ -13,8 +13,8 @@ A lightweight toolkit that provides functions for printing tables from input dat
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/joshuamarie/tabstats}
-  \item Report bugs at \url{https://github.com/joshuamarie/tabstats/issues}
+  \item \url{https://github.com/s7-stats/tabstats}
+  \item Report bugs at \url{https://github.com/s7-stats/tabstats/issues}
 }
 
 }

@@ -34,13 +34,9 @@ navbar:
       menu:
         - text: Getting Started
           href: articles/tabstats.html
-    blog:
-      text: Blog
-      icon: fa-blog
-      href: https://joshuamarie.com
     github:
       icon: fab fa-github fa-lg
-      href: https://github.com/joshuamarie/kindling
+      href: https://s7-stats.github.io/tabstats
       aria-label: GitHub
 
 reference:
