@@ -225,6 +225,28 @@ table_summary(
 )
 ```
 
+Hex codes are also supported:
+
+```{r}
+table_summary(
+    df, 
+    title = "Descriptive Statistics", 
+    header = TRUE, 
+    style = sm_style(
+        left_col = function(x) {
+            red = cli::make_ansi_style("#BD4444")
+            red(cli::style_bold(x))
+        },
+        right_col = \(x) {
+            bluish_color = cli::make_ansi_style("#67A2C5")
+            bluish_color(x)
+        }, 
+        title = "bold", 
+        sep = ":  "
+    )
+)
+```
+
 Supported named style strings:
 
 | String                                   | Effect                              |
@@ -256,7 +278,9 @@ cor_mat |>
                     if (is.na(x_num) || x_num > 0.05) {
                         cli::style_italic(x) 
                     } else if (x_num > 0.01) {
-                        cli::col_red(x)
+                        reddish = cli::make_ansi_style("#CE2626")
+                        reddish(x)
+                        # or just cli::col_red(x)
                     } else {
                         cli::style_bold("<0.001")
                     }
