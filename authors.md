@@ -7,7 +7,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/s7-stats/tabstats/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/s7-stats/tabstats/blob/v0.2.1/inst/CITATION)
 
 Marie J (2026). *tabstats: A Lightweight Toolkit for Displaying
 Customizable Tables*. R package version 0.2.1.
