@@ -6,7 +6,9 @@
 
 -  Documenting hex color codes usage in `{tabstats}` under `vignette("tabstats")` (at the `Styling Primer` part). 
 
--  `{tabstats}` GitHub repository is now under S7 stats. Changing link to https://s7-stats.github.io/tabstats/. 
+-  `{tabstats}` GitHub repository is now under S7 stats. Changing username to `s7-stats`. 
+
+    -  Changing link to https://s7-stats.github.io/tabstats/. 
 
 # tabstats 0.2.0
 
