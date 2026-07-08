@@ -1,8 +1,10 @@
 # tabstats (development version)
 
+# tabstats 0.2.1
+
 -  Fixes `pairwise_matrix()` discrepancies, where the title from the layout guide box is truncated. 
 
--  Documenting hex color codes usage in `{tabstats}` under `vignette("tabstats")`. 
+-  Documenting hex color codes usage in `{tabstats}` under `vignette("tabstats")` (at the `Styling Primer` part). 
 
 -  `{tabstats}` GitHub repository is now under S7 stats. Changing link to https://s7-stats.github.io/tabstats/. 
 
